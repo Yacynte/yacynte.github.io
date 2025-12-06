@@ -32,50 +32,24 @@
     </div>
 
     <!-- ABOUT SECTION -->
-    <div class="section">
-        <h2>About Me</h2>
-        <p>
-            I am an Autonomous Systems Engineer driven by the fundamental challenge of making robots and UAVs truly intelligent, particularly where traditional navigation methods fail.
-
-            My work revolves around real-time perception—whether it’s developing Neuromorphic Optical Flow for high-speed drone maneuverability or integrating synchronized sensor data for robust localization in complex outdoor environments. I design solutions that bridge the gap between simulation (using advanced virtual testing) and successful real-world deployment. I thrive on developing the core vision and navigation systems that empower the next generation of mobile autonomy..
-        </p>
-    </div>
-
     <section id="about-me" style="padding-top: 0;">
     <h2><span style="font-size: 1.2em;">👤</span> About Me</h2>
-
-    <div style="margin-bottom: 15px;">
-        <p style="font-size: 1.1em; line-height: 1.5; margin-bottom: 15px;">
-            [cite_start]I am **Batchaya Yacynte, an Autonomous Systems Engineer** [cite: 2] [cite_start]specializing in the **localization, sensor fusion, and real-time navigation** [cite: 2] for mobile robots and UAVs. My mission is to build intelligent systems that can reliably operate in challenging and unstructured environments.
-        </p>
-    </div>
-
-    <div style="margin-bottom: 15px;">
-        <p style="font-weight: bold; margin-bottom: 5px;">Core Expertise:</p>
-        <ul style="padding-left: 20px; list-style-type: square; margin-top: 5px;">
-            <li style="margin-bottom: 8px;">
-                [cite_start]Developing robust **multi-sensor odometry pipelines** [cite: 3] [cite_start]combining visual, inertial, and LiDAR data[cite: 3].
-            </li>
-            <li style="margin-bottom: 8px;">
-                [cite_start]Expertise in real-time perception, including implementing time-to-collision systems using **neuromorphic event-based cameras**[cite: 10].
-            </li>
-            <li style="margin-bottom: 8px;">
-                [cite_start]Skilled in **environment mapping, trajectory estimation** [cite: 4][cite_start], and building robust **control-oriented system design**[cite: 4].
-            </li>
-            <li style="margin-bottom: 8px;">
-                [cite_start]Proficiency with **ROS2** [cite: 3][cite_start], simulation tools like **Unreal Engine**[cite: 13, 43], and optimization frameworks for autonomous motion.
-            </li>
-        </ul>
-    </div>
-
-    <p style="font-style: italic; margin-top: 15px; border-left: 3px solid #007bff; padding-left: 10px; background-color: #f8f9fa;">
-        I am driven by the process of translating complex algorithmic theory into deployable, functional solutions, as demonstrated in my work on agricultural robot navigation and UAV repositioning systems.
+    <p style="font-size: 1em; line-height: 1.4; color: #333;">
+        Engineer focused on real-time perception for drones and mobile robots. Experience with visual odometry, sensor fusion, event-based cameras, and virtual testing environments for autonomous navigation.
+        Specializing in real-time localization and sensor fusion for UAVs and mobile robots. I design and implement robust multi-sensor odometry pipelines (visual, inertial, LiDAR) and control-oriented systems using ROS1/2 to ensure reliable autonomous motion.
     </p>
-</section>
+
+    <ul style="padding-left: 0; list-style: none; margin-top: 10px; font-size: 0.9em; display: flex; flex-wrap: wrap; gap: 15px;">
+        <li style="font-weight: bold; color: #007bff;">#SensorFusion</li>
+        <li style="font-weight: bold; color: #007bff;">#UAVNavigation</li>
+        <li style="font-weight: bold; color: #007bff;">#ROS2</li>
+        <li style="font-weight: bold; color: #007bff;">#VisualPerception</li>
+    </ul>
+    </section>
 
     <!-- PROJECTS -->
     <div class="section">
-        <h2>Projects</h2>
+        <h2>Projects 📂 </h2>
 
         <div class="project">
             <h3> Neuromorphic Event-Camera Optical Flow – Triplet Matcher </h3>
@@ -93,10 +67,10 @@
             </ul>
             <p>
             The pipeline demonstrated strong robustness to motion blur and challenging lighting where frame-based methods degrade with strong potential for high-speed perception and is designed for future integration into robotics navigation systems.
-            <a> Details available upon request </a>
+            </p> 
+            <p> Details available upon request </p>
             <br><strong>Tech:</strong> Python, event-based processing, OpenCV, ROS2-ready architecture
-            </p>
-            <img src="IMAGE_PLACEHOLDER_HERE" alt="Unreal Environment Demo">
+            
         </div>
 
         <div class="project">
@@ -128,7 +102,7 @@
                 <li> Created a working RTSP camera stream to simulate real drone hardware in simulation </li>
                 <li> Implemented TCP-based motion control to validate autonomy in closed-loop experiments </li>
             </ul>
-            <img src="IMAGE_PLACEHOLDER_HERE" alt="Unreal Environment Demo">
+            <img src="rain.png" alt="Rain Demo in Unreal Ennironment">
         </div>
 
         <div class="project">
@@ -141,7 +115,7 @@
                 <li> Full visual-inertial odometry implementation in Python using OpenCV and NumPy, with support for image + IMU input or pure image-only input. </li>
                 <li> Trajectory estimation tested on multiple scenarios, including benchmark datasets (KITTI), drone data (Tello), and simulated environments. The results yield low translation error (~1–1.3%) and stable pose estimation, supporting the viability of monocular VO for UAV applications. </li>
                 <li> Implemented feature-tracking with optical flow / keypoint matching, and pose estimation via essential matrix / PnP, ensuring robust estimation even under challenging motion. </li>
-                <li> Built a GUI-based interface to configure parameters (feature detection/tracking, flow settings, filtering) and visualize output trajectories, errors, and performance metrics — making the tool accessible and easy to test. </li>
+                <li> Built a GUI-based interface to configure parameters (feature detection/tracking, flow settings, filtering) and visualize output trajectories, errors, and performance metrics making the tool accessible and easy to test. </li>
                 <li> Designed modular structure so that the VO core can be reused, extended, or integrated into larger perception/navigation stacks (e.g. for drone control, mapping, or sensor fusion) </li>
             </ul>
             <h4>Why it Matters: </h4>
@@ -150,7 +124,8 @@
                 <br><strong>Tech:</strong> Python, OpenCV, Optimization
                 <br><a href="https://ieeexplore.ieee.org/document/10735689">Paper Link</a>
             </p>
-            <img src="IMAGE_PLACEHOLDER_HERE" alt="VO Trajectory Example">
+            <img src="tello_square.png" alt="VO Trajectory Example">
+            <img src="translation_square.png" alt="VO Trajectory Example">
         </div>
 
     </div>
@@ -184,10 +159,10 @@
             </p>
             <ul style="margin-top: 5px; padding-left: 35px;">
                 <li>
-                    [cite_start]Developed a Lucas-Kanade optical flow algorithm and a monocular VIO system achieving <1% translation error on KITTI[cite: 51].
+                    Developed a Lucas-Kanade optical flow algorithm and a monocular VIO system achieving <1% translation error on KITTI.
                 </li>
                 <li>
-                    [cite_start]Work was published and presented at the REM2024 conference, IEEE[cite: 52].
+                    Work was published and presented at the REM2024 conference, IEEE.
                 </li>
             </ul>
         </div>
