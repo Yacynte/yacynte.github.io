@@ -113,47 +113,64 @@
             
         </div>
 
-        <div class="project">
-            <h3> Vision-Based Drone Repositioning </h3>
-            <p>
-                Many UAV systems rely solely on GPS for return-to-home behavior. In cluttered or GPS-denied environments, this leads to drift or outright failure.
-                This project introduces a vision-based repositioning algorithm that can relocate a drone back to a previously recorded viewpoint using only its onboard camera feed.
-            </p>
-            <h4> My contributions: </h4>
-            <ul>
-                <li>  Designed a C++ visual localization module that continuously matches incoming images to a reference capture </li>
-                <li> Built a full test environment in Unreal Engine 5 with controllable flights, lighting, and weather conditions </li>
-                <li> Created a working RTSP camera stream to simulate real drone hardware in simulation </li>
-                <li> Implemented TCP-based motion control to validate autonomy in closed-loop experiments </li>
-            </ul>
-            <img src="rain.png" alt="Rain Demo in Unreal Ennironment">
+        <div class="project" style="display: flex; gap: 20px; align-items: flex-start;">
+    
+            <div class="project-text-content" style="flex: 1; min-width: 50%;">
+                <h3> Vision-Based Drone Repositioning </h3>
+                <p>
+                    Many UAV systems rely solely on GPS for return-to-home behavior. In cluttered or GPS-denied environments, this leads to drift or outright failure.
+                    This project introduces a vision-based repositioning algorithm that can relocate a drone back to a previously recorded viewpoint using only its onboard camera feed.
+                </p>
+                <h4> My contributions: </h4>
+                <ul>
+                    <li> Designed a C++ visual localization module that continuously matches incoming images to a reference capture </li>
+                    <li> Built a full test environment in Unreal Engine 5 with controllable flights, lighting, and weather conditions </li>
+                    <li> Created a working RTSP camera stream to simulate real drone hardware in simulation </li>
+                    <li> Implemented TCP-based motion control to validate autonomy in closed-loop experiments </li>
+                </ul>
+            </div>
+            
+            <div class="project-image-content" style="flex: 1; max-width: 50%; display: flex; align-items: center; justify-content: center;">
+                <img src="rain.png" alt="Rain Demo in Unreal Ennironment" style="max-width: 100%; height: auto; display: block;">
+            </div>
+            
         </div>
 
-        <div class="project">
-            <h3> Monocular (Inertial) Visual Odometry for UAV Navigation </h3>
-            <p>
-                This project builds a robust monocular-based VO/VIO pipeline intended to enable UAVs or mobile robots to navigate without relying on GPS or external infrastructure. The system estimates camera pose, translation and rotation by analyzing consecutive image frames (and optionally combining inertial data), making it suitable for drones, robots, or any mobile platform with a single camera.
-            </p>
-            <h4> Core features and contributions: </h4>
-            <ul>
-                <li> Full visual-inertial odometry implementation in Python using OpenCV and NumPy, with support for image + IMU input or pure image-only input. </li>
-                <li> Trajectory estimation tested on multiple scenarios, including benchmark datasets (KITTI), drone data (Tello), and simulated environments. The results yield low translation error (~1–1.3%) and stable pose estimation, supporting the viability of monocular VO for UAV applications. </li>
-                <li> Implemented feature-tracking with optical flow / keypoint matching, and pose estimation via essential matrix / PnP, ensuring robust estimation even under challenging motion. </li>
-                <li> Built a GUI-based interface to configure parameters (feature detection/tracking, flow settings, filtering) and visualize output trajectories, errors, and performance metrics making the tool accessible and easy to test. </li>
-                <li> Designed modular structure so that the VO core can be reused, extended, or integrated into larger perception/navigation stacks (e.g. for drone control, mapping, or sensor fusion) </li>
-            </ul>
-            <h4>Why it Matters: </h4>
-            <p>
-                Monocular VO (and VIO) remains a compelling lightweight alternative to heavy sensor suites (like LiDAR or stereo rigs), especially for UAVs or small robots. This implementation shows that reliable motion estimation with minimal hardware is feasible, which can significantly reduce cost, weight, and complexity.
-                <br><strong>Tech:</strong> Python, OpenCV, Optimization
-                <br><a href="https://ieeexplore.ieee.org/document/10735689">Paper Link</a>
-            </p>
-            <img src="tello_square.png" alt="VO Trajectory Example">
-            <img src="translation_square.png" alt="VO Trajectory Example">
+        <div class="project" style="display: flex; gap: 20px; align-items: flex-start;">
+    
+        <div class="project-text-content" style="flex: 1; min-width: 50%;">
+                <h3> Monocular (Inertial) Visual Odometry for UAV Navigation </h3>
+                <p>
+                    This project builds a robust monocular-based VO/VIO pipeline intended to enable UAVs or mobile robots to navigate without relying on GPS or external infrastructure. The system estimates camera pose, translation and rotation by analyzing consecutive image frames (and optionally combining inertial data), making it suitable for drones, robots, or any mobile platform with a single camera.
+                </p>
+                
+                <h4> Core features and contributions: </h4>
+                <ul>
+                    <li> Full visual-inertial odometry implementation in Python using OpenCV and NumPy, with support for image + IMU input or pure image-only input. </li>
+                    <li> Trajectory estimation tested on multiple scenarios, including benchmark datasets (KITTI), drone data (Tello), and simulated environments. The results yield low translation error (~1–1.3%) and stable pose estimation, supporting the viability of monocular VO for UAV applications. </li>
+                    <li> Implemented feature-tracking with optical flow / keypoint matching, and pose estimation via essential matrix / PnP, ensuring robust estimation even under challenging motion. </li>
+                    <li> Built a GUI-based interface to configure parameters (feature detection/tracking, flow settings, filtering) and visualize output trajectories, errors, and performance metrics making the tool accessible and easy to test. </li>
+                    <li> Designed modular structure so that the VO core can be reused, extended, or integrated into larger perception/navigation stacks (e.g. for drone control, mapping, or sensor fusion) </li>
+                </ul>
+                
+                <h4>Why it Matters: </h4>
+                <p>
+                    Monocular VO (and VIO) remains a compelling lightweight alternative to heavy sensor suites (like LiDAR or stereo rigs), especially for UAVs or small robots. This implementation shows that reliable motion estimation with minimal hardware is feasible, which can significantly reduce cost, weight, and complexity.
+                    <br><strong>Tech:</strong> Python, OpenCV, Optimization
+                    <br><a href="https://ieeexplore.ieee.org/document/10735689">Paper Link</a>
+                </p>
+            </div>
+            
+            <div class="project-image-content" style="flex: 1; max-width: 50%; display: flex; flex-direction: column; gap: 10px; align-items: center; justify-content: flex-start;">
+                <img src="tello_square.png" alt="VO Trajectory Example" style="max-width: 100%; height: auto; display: block;">
+                <img src="translation_square.png" alt="Translation Error Example" style="max-width: 100%; height: auto; display: block;">
+            </div>
+            
         </div>
 
     </div>
 
+    <!-- EDUCATION -->
     <section id="education">
     <h2><span style="font-size: 1.2em;">📚</span> Educational Background</h2>
     
