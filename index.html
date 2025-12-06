@@ -46,14 +46,30 @@
         <h2>Projects</h2>
 
         <div class="project">
-            <h3>Event-Camera Optical Flow (Fraunhofer IVI)</h3>
+            <h3>Neuromorphic Event-Camera Optical Flow – Triplet Matcher (Fraunhofer IVI)</h3>
             <p>
-                Implemented triplet-matcher algorithm for IDS neuromorphic event cameras.
-                Real-time flow estimation for reactive navigation.
-                <br><strong>Tech:</strong> C++, CUDA, ROS2, Jetson Orin
-                <br><em>Results pending publication</em>
+            Neuromorphic event cameras capture pixel-level brightness changes asynchronously at microsecond resolution. They enable perception during extreme motion and low-light conditions where conventional frame cameras fail.
+            
+            At Fraunhofer IVI, I developed a fast triplet-matching optical flow pipeline for an IDS event-based camera, focused on high-speed motion estimation for autonomous systems.
             </p>
-            <!-- Add image later if allowed -->
+            <h4>My contributions</h4>
+            <ul>
+              <li>Designed the full Python processing pipeline for event-stream optical flow</li>
+              <li>Implemented temporal buffering and timestamp synchronization to maintain precise event ordering</li>
+              <li>Generated time-surface representations for spatial-temporal context aggregation</li>
+                <li> Built temporal triplet matching to extract stable motion correspondences from sparse asynchronous events </li>
+                <li> Added confidence filtering and outlier rejection to improve robustness in dynamic scenes </li>
+            </ul>
+
+            <h4> Performance </h4>
+            <ul>
+                <li> Achieved <3 ms latency on representative sequences (no GPU), suitable for reactive navigation studies </li>
+                <li> Demonstrated strong robustness to motion blur and challenging lighting where frame-based methods degrade </li>
+            </ul>
+            <p>
+                The next development stage will target object specific time to collision, real-time deployment in C++ with GPU acceleration and ROS2 integration into robotic navigation stacks.
+            </p> 
+            <img src="IMAGE_PLACEHOLDER_HERE" alt="Unreal Environment Demo">
         </div>
 
         <div class="project">
