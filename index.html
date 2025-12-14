@@ -59,8 +59,13 @@
     <section id="about-me" style="padding: 10px 0;">
         <h2><span style="font-size: 1.2em;">👤</span> About Me</h2>
         <p style="font-size: 1em; line-height: 1.4; color: #333;">
-            Engineer focused on real-time perception for drones and mobile robots. Experience with visual odometry, sensor fusion, event-based cameras, and virtual testing environments for autonomous navigation.
-            Specializing in real-time localization and sensor fusion for UAVs and mobile robots. I design and implement robust multi-sensor odometry pipelines (visual, inertial, LiDAR) and control-oriented systems using ROS1/2 to ensure reliable autonomous motion.
+            I am a Computer Vision engineer with a strong focus on geometric vision, stereo perception, and 3D reconstruction.
+
+            My work centers on building and understanding vision pipelines from the ground up, including sensor calibration, feature and object tracking, pose estimation, and trajectory recovery with multiple sensors. I have hands-on experience implementing stereo visual-lidar odometry systems and evaluating them on real-world datasets such as KITTI.
+            
+            I am particularly interested in perception for robotics and autonomous systems, where robustness, accuracy, and physical consistency matter more than visual demos. I enjoy working close to the math and geometry behind vision algorithms rather than relying on black-box solutions.
+            
+            My long-term goal is to design reliable perception systems that operate under real constraints such as noise, limited compute, and imperfect sensors.
         </p>
     
         <ul style="padding-left: 0; list-style: none; margin-top: 10px; font-size: 0.9em; display: flex; flex-wrap: wrap; gap: 15px;">
@@ -77,22 +82,18 @@
         <div class="project">
             <h3> Neuromorphic Event-Camera Optical Flow – Triplet Matcher </h3>
             <p>
-            Neuromorphic event cameras capture pixel-level brightness changes asynchronously at microsecond resolution. They enable perception during extreme motion and low-light conditions where conventional frame cameras fail.
+            Developed a high-speed optical flow pipeline for a neuromorphic event camera, targeting motion estimation under extreme dynamics and low-light conditions where frame-based vision degrades.
+
+            Designed and implemented an end-to-end Python processing pipeline for asynchronous event streams, including precise temporal buffering and timestamp synchronization.
             
-            I developed a fast triplet-matching optical flow pipeline for an IDS event-based camera, focused on high-speed motion estimation for autonomous systems. The work included;
+            Generated time-surface representations to aggregate spatiotemporal context and implemented a temporal triplet-matching algorithm to extract stable motion correspondences from sparse event data.
+            
+            Integrated confidence filtering and outlier rejection to improve robustness in dynamic scenes. The pipeline demonstrated strong resistance to motion blur and challenging lighting, with clear potential for high-speed robotic perception and navigation.           
             </p>
-            <ul>
-              <li>Designed the full Python processing pipeline for event-stream optical flow</li>
-              <li>Implemented temporal buffering and timestamp synchronization to maintain precise event ordering</li>
-              <li>Generated time-surface representations for spatial-temporal context aggregation</li>
-                <li> Built temporal triplet matching to extract stable motion correspondences from sparse asynchronous events </li>
-                <li> Added confidence filtering and outlier rejection to improve robustness in dynamic scenes </li>
-            </ul>
-            <p>
-            The pipeline demonstrated strong robustness to motion blur and challenging lighting where frame-based methods degrade with strong potential for high-speed perception and is designed for future integration into robotics navigation systems.
-            </p> 
-            <p> Details available upon request </p>
-            <br><strong>Tech:</strong> Python, event-based processing, OpenCV, ROS2-ready architecture
+            <p> designed with future integration into robotic navigation and autonomy pipelines in mind. </p> 
+            <p> Further technical details available upon request. </p>
+            <br><strong>Focus:</strong> event-based optical flow, asynchronous perception, high-speed motion estimation
+            <br><strong>Tech:</strong> Python, event-based vision, OpenCV, ROS 2-ready architecture
             
         </div>
 
@@ -101,52 +102,69 @@
             <p>
                 The KoSiNus project focuses on deploying affordable autonomous robots to support agricultural workers in monitoring fields and detecting hazardous situations in real time.
             
-                My contribution was centered on perception integration and sensor fusion:
+                My contribution was centered on perception integration:
             </p>
             <ul>
                 <li> Brought up IDS industrial cameras and LiDAR sensors on a Jetson Orin Nano running ROS2 </li>
-                <li> Synchronized camera + LiDAR data for robust human and object detection </li>
                 <li> Developed monitoring tools to visualize detections and ensure system reliability in dynamic weather and vegetation </li>
                 <li> This work provides the foundation for autonomous navigation in rural environments, where GPS alone is unreliable. </li>
             </ul>
             
         </div>
 
-        <h3> Vision-Based Drone Repositioning (TH Ingolstadt) </h3>
-        <div class="project" style="display: flex; gap: 20px; align-items: flex-start;">
-            <div class="project-text-content" style="flex: 1; min-width: 50%;">
-                <p>
-                    Many UAV systems rely solely on GPS for return-to-home behavior. In cluttered or GPS-denied environments, this leads to drift or outright failure.
-                    This project introduces a vision-based repositioning algorithm that can relocate a drone back to a previously recorded viewpoint using only its onboard camera feed.
-                </p>
-                <h4> My contributions: </h4>
-                <ul>
-                    <li> Designed a C++ visual localization module that continuously matches incoming images to a reference capture </li>
-                    <li> Built a full test environment in Unreal Engine 5 with controllable flights, lighting, and weather conditions </li>
-                    <li> Created a working RTSP camera stream to simulate real drone hardware in simulation </li>
-                    <li> Implemented TCP-based motion control to validate autonomy in closed-loop experiments </li>
-                </ul>
-            </div>
-            
-            <div class="project-image-content" style="flex: 1; max-width: 50%; display: flex; align-items: center; justify-content: center;">
-                <img src="rain.png" alt="Rain Demo in Unreal Ennironment" style="max-width: 100%; height: auto; display: block;">
+        <div class="project">
+            <h3> Vision-Based Drone Repositioning (TH Ingolstadt) </h3>
+            <div class="project" style="display: flex; gap: 20px; align-items: flex-start;">
+                <div class="project-text-content" style="flex: 1; min-width: 50%;">
+                    <p>
+                        Developed a vision-based repositioning system enabling a UAV to return to a previously recorded viewpoint using only onboard camera input, targeting GPS-degraded and cluttered environments.
+                    </p>
+                    <ul>
+                        <li> Designed and implemented a C++ visual localization module that continuously matches live camera frames against a reference image to estimate relative viewpoint alignment. </li>
+                        <li> Built a high-fidelity simulation environment in Unreal Engine 5, including controllable flight dynamics, lighting, and weather conditions, to test robustness under varying visual conditions. </li>
+                        <li> Implemented an RTSP-based camera pipeline to emulate real drone hardware and a TCP-based motion control interface to validate closed-loop autonomous repositioning. </li>
+                    </ul>
+                </div>
+                
+                <div class="project-image-content" style="flex: 1; max-width: 50%; display: flex; align-items: center; justify-content: center;">
+                    <img src="rain.png" alt="Rain Demo in Unreal Ennironment" style="max-width: 100%; height: auto; display: block;">
+                </div>
+                <br><strong>Focus:</strong> visual localization, simulation-based validation, closed-loop autonomy
+                <br><strong>Stack:</strong> C++, Unreal Engine 5, RTSP, TCP/IP
             </div>
         </div>
 
-        <h3> Monocular (Inertial) Visual Odometry for UAV Navigation ( TH Würzburg-Schweinfurt ) </h3>
-        <div class="project" style="display: flex; gap: 20px; align-items: flex-start;">
-        <div class="project-text-content" style="flex: 1; min-width: 50%;">
-                <p> This project builds a robust monocular-based VO/VIO pipeline intended to enable UAVs or mobile robots to navigate without relying on GPS or external infrastructure. The system estimates camera pose, translation and rotation by analyzing consecutive image frames (and optionally combining inertial data), making it suitable for drones, robots, or any mobile platform with a single camera.</p>
-                
-                <h4> Core features and contributions: </h4>
-                <ul>
-                    <li> Full visual-inertial odometry implementation in Python using OpenCV and NumPy, with support for image + IMU input or pure image-only input. </li>
-                    <li> Trajectory estimation tested on multiple scenarios, including benchmark datasets (KITTI), drone data (Tello), and simulated environments. The results yield low translation error (~1–1.3%) and stable pose estimation, supporting the viability of monocular VO for UAV applications. </li>
-                    <li> Implemented feature-tracking with optical flow / keypoint matching, and pose estimation via essential matrix / PnP, ensuring robust estimation even under challenging motion. </li>
-                    <li> Built a GUI-based interface to configure parameters (feature detection/tracking, flow settings, filtering) and visualize output trajectories, errors, and performance metrics making the tool accessible and easy to test. </li>
-                    <li> Designed modular structure so that the VO core can be reused, extended, or integrated into larger perception/navigation stacks (e.g. for drone control, mapping, or sensor fusion) </li>
-                </ul>
-                
+        <div class="project">
+            <h3> Visual–Inertial–LiDAR Odometry & Terrain Mapping (Agrobot) </h3>
+            <p>
+            Worked as a Robotics Engineer on perception and localization systems for autonomous aerial platforms.
+
+            Designed and implemented a stereo visual–inertial–LiDAR odometry framework based on an Extended Kalman Filter (EKF), fusing camera, IMU, and LiDAR measurements to improve localization robustness and accuracy in outdoor environments.
+            
+            Developed a topographic mapping and localization pipeline for precision land surveying and terrain evaluation, focusing on consistent pose estimation and reliable spatial reconstruction.
+            
+            Implemented real-time 3D reconstruction from fused LiDAR–stereo point clouds to support navigation and environment understanding, with an emphasis on geometric consistency and practical deployment constraints.
+            </p>
+            <p> Further technical details available upon request. </p>
+            <br><strong>Focus:</strong> multi-sensor fusion, state estimation, aerial robotics
+            <br><strong>Tech:</strong> C++, Python, EKF-based sensor fusion, stereo vision, LiDAR
+        </div>
+
+        <div class="project">
+            <h3> Monocular Inertial Visual Odometry for UAV Navigation ( TH Würzburg-Schweinfurt ) </h3>
+            <div class="project" style="display: flex; gap: 20px; align-items: flex-start;">
+            <div class="project-text-content" style="flex: 1; min-width: 50%;">
+                <p> Developed a monocular visual odometry and visual–inertial odometry (VO/VIO) pipeline for UAV and mobile robot navigation without reliance on GPS or external infrastructure.
+
+                    Implemented an end-to-end VO/VIO system in Python using OpenCV and NumPy, supporting both pure image-based operation and optional IMU fusion. Camera motion is estimated via feature tracking across consecutive frames, essential matrix decomposition, and PnP-based pose recovery.
+                    
+                    Evaluated trajectory estimation on benchmark datasets (KITTI), real drone data (Tello), and simulated environments. The system achieved low translation error on the order of 1–1.3% on benchmark trajectories, demonstrating stable pose estimation under varied motion conditions.
+                    
+                    Designed a modular architecture to enable reuse and integration into larger perception or navigation stacks and built a GUI-based interface for parameter configuration and visualization of trajectories, errors, and performance metrics to support experimentation and debugging.
+                </p>
+                <br><strong>Tech:</strong> Python, OpenCV, Optimization
+                <br><a href="https://ieeexplore.ieee.org/document/10735689">Paper Link</a> 
+                <br><a href="https://github.com/Yacynte/Monocular-Visual-Odometry">Code</a>
             </div>
             
             <div class="project-image-content" style="flex: 1; max-width: 50%; display: flex; flex-direction: column; gap: 10px; align-items: center; justify-content: flex-start;">
@@ -155,14 +173,7 @@
             </div>
             
         </div>
-        <div>
-            <h4>Why it Matters: </h4>
-                <p>
-                    Monocular VO (and VIO) remains a compelling lightweight alternative to heavy sensor suites (like LiDAR or stereo rigs), especially for UAVs or small robots. This implementation shows that reliable motion estimation with minimal hardware is feasible, which can significantly reduce cost, weight, and complexity.
-                    <br><strong>Tech:</strong> Python, OpenCV, Optimization
-                    <br><a href="https://ieeexplore.ieee.org/document/10735689">Paper Link</a>
-                </p>
-        </div>
+</div>
 
     </div>
 
