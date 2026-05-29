@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Batchaya Yacynte – Autonomous Systems Engineer</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #ffffff; color: #111; }
+    .container { width: 90%; max-width: 900px; margin: auto; padding: 40px 0; }
+    h1, h2 { font-weight: 600; }
+    h1 { font-size: 32px; margin-bottom: 5px; }
+    .subtitle { font-size: 18px; color: #555; margin-bottom: 20px; }
+    .links a { margin-right: 15px; text-decoration: none; color: #0066cc; }
+    .section { margin-top: 50px; }
+    .project { margin-bottom: 40px; }
+    .project img { max-width: 100%; border: 1px solid #ddd; margin-top: 10px; }
+    footer { margin-top: 50px; font-size: 14px; color: #666; text-align: center; }
+</style>
+</head>
+
+<body>
+<div class="container">
+        <!-- HEADER -->
+        <header id="portfolio-header" style="position: relative; padding: 20px;">
+        
+        <div id="image-container" style="
+            position: absolute; 
+            top: 20px;         
+            right: 20px;       
+            width: 200px;      
+            height: 200px;     
+            z-index: 10;       
+        ">
+            <img src="Divan-Batchaya.jpg" alt="Batchaya Yacynte Professional Headshot" 
+                 style="
+                     width: 100%; 
+                     height: 100%; 
+                     border-radius: 50%; /* Makes it a circle */
+                     object-fit: cover; 
+                     border: 3px solid #007bff;
+                 ">
+        </div>
+    
+        <div id="title-content" style="padding-right: 180px;">
+            <h1 style="font-size: 2em; margin-bottom: 5px;">Batchaya Yacynte</h1>
+            <div class="subtitle" style="font-size: 1.1em; color: #555;">Autonomous Systems Engineer | UAV Navigation | Visual Perception</div>
+        </div>
+        
+        <div class="links" style="margin-top: 10px;">
+            <a href="mailto:batchaya.yacynte@gmail.com" style="margin-right: 15px;">Email 📧</a>
+            <a href="https://www.linkedin.com/in/batchaya-yacynte-256357227/" style="margin-right: 15px;">LinkedIn 🔗 </a>
+            <a href="https://github.com/Yacynte" style="margin-right: 15px;">GitHub 💻</a>
+            <a href="https://ieeexplore.ieee.org/document/10735689">Publication 📄</a>
+        </div>
+    
+    </header>
+    <!-- About Me -->
+    <section id="about-me" style="padding: 10px 0;">
+        <h2><span style="font-size: 1.2em;">👤</span> About Me</h2>
+        <p style="font-size: 1em; line-height: 1.4; color: #333;">
+            I am an Autonomous Systems Engineer focused on perception, localization, and real-world deployment. My work centers on building visual odometry, tracking, and sensor-fusion pipelines that move beyond research prototypes and operate reliably on real robotic platforms.
+
+            </p> I have worked extensively on monocular, stereo, and visual-inertial localization systems, primarily in the context of UAVs and mobile robots. Rather than treating perception as an isolated algorithmic problem, I approach it as a systems engineering challenge: sensor synchronization, data flow, robustness, runtime constraints, and integration into larger robotic stacks. </p>
+
+            <p> A significant part of my experience involves developing ROS and ROS2-based perception systems, integrating cameras, IMUs, LiDAR, and external tracking systems, and validating results through visualization and simulation tools. I have deployed and tested perception pipelines on embedded platforms such as ARM devices, Raspberry Pi and NVIDIA Jetson, where computational and real-time constraints strongly influence design decisions.</p>
+
+            <p> I enjoy working at the boundary between theory and practice, taking ideas from computer vision and robotics research and turning them into systems that function under real conditions.</p> 
+            
+            <p> My goal is to contribute to teams building autonomous systems that must perform reliably outside controlled environments.</p>
+        
+        </p>   
+    
+        <ul style="padding-left: 0; list-style: none; margin-top: 10px; font-size: 0.9em; display: flex; flex-wrap: wrap; gap: 15px;">
+            <li style="font-weight: bold; color: #007bff;">#SensorFusion</li>
+            <li style="font-weight: bold; color: #007bff;">#UAVNavigation</li>
+            <li style="font-weight: bold; color: #007bff;">#ROS2</li>
+            <li style="font-weight: bold; color: #007bff;">#VisualPerception</li>
+        </ul>
+    </section>
+
+    <!-- PROJECTS -->
+    <div class="section" style="margin-top: 20px;">
+        <h2>Projects 📂 </h2>
+        <div class="project">
+            <h3> Neuromorphic Event-Camera Optical Flow – Triplet Matcher ( Fraunhofer IVI ) </h3>
+            <p style="margin: 0 0 10px 0;"> Developed a high-speed optical flow pipeline for a neuromorphic event camera, targeting motion estimation under extreme dynamics and low-light conditions where frame-based vision degrades. </p>
+
+            <p style="margin: 0 0 10px 0;"> Designed and implemented an end-to-end Python processing pipeline for asynchronous event streams, including precise temporal buffering and timestamp synchronization. </p> 
+            
+            <p style="margin: 0 0 10px 0;"> Generated time-surface representations to aggregate spatiotemporal context and implemented a temporal triplet-matching algorithm to extract stable motion correspondences from sparse event data. </p> 
+            
+            <p style="margin: 0 0 10px 0;"> Integrated confidence filtering and outlier rejection to improve robustness in dynamic scenes. The pipeline demonstrated strong resistance to motion blur and challenging lighting, with clear potential for high-speed robotic perception and navigation. </p>
+            <p style="margin: 0 0 10px 0;"> designed with future integration into robotic navigation and autonomy pipelines in mind. </p> 
+            <p style="margin: 0 0 10px 0;"> <em> Further technical details available upon request. </em> </p>
+            <br style="margin: 10px 0 10px 0;"><strong>Focus:</strong> event-based optical flow, asynchronous perception, high-speed motion estimation
+            <br><strong>Tech:</strong> Python, event-based vision, OpenCV, ROS 2-ready architecture
+            
+        </div>
+
+        <div class="project">
+            <h3> KoSiNus Lower Saxony – Outdoor Agricultural Robot Navigation ( Fraunhofer IVI ) </h3>
+            <p style="margin: 0 0 10px 0;"> The KoSiNus project focuses on deploying affordable autonomous robots to support agricultural workers in monitoring fields and detecting hazardous situations in real time.
+                My contribution was centered on perception integration:
+            </p>
+            <ul>
+                <li> Brought up IDS industrial cameras and LiDAR sensors on a Jetson Orin Nano running ROS2 </li>
+                <li> Developed monitoring tools to visualize detections and ensure system reliability in dynamic weather and vegetation </li>
+                <li> This work provides the foundation for autonomous navigation in rural environments, where GPS alone is unreliable. </li>
+            </ul>
+            <br style="margin: 0 0 10px 0;"><strong>Focus:</strong> multi-sensor fusion, hardware integration, agricultural robotics
+            <br><strong>Tech:</strong> C++, Python, computer vision, LiDAR
+        </div>
+
+        <div class="project">
+            <h3> Vision-Based Drone Repositioning (AImotion - Bavaria) </h3>
+            <div class="project" style="display: flex; gap: 20px; align-items: flex-start;">
+                <div class="project-text-content" style="flex: 1; min-width: 50%;">
+                    <p style="margin: 0 0 10px 0;">
+                        Developed a vision-based repositioning system enabling a UAV to return to a previously recorded viewpoint using only onboard camera input, targeting GPS-degraded and cluttered environments.
+                    </p>
+                    <ul>
+                        <li> Designed and implemented a C++ visual localization module that continuously matches live camera frames against a reference image to estimate relative positioning and move the drone to a target position and orientation. </li>
+                        <li> Built a high-fidelity simulation environment in Unreal Engine 5, including controllable flight dynamics, lighting, and weather conditions, to test robustness under varying visual conditions. </li>
+                        <li> Implemented an RTSP-based camera pipeline to emulate real drone hardware and a TCP-based motion control interface to validate closed-loop autonomous repositioning. </li>
+                    </ul>
+                    <br style="margin: 0 0 10px 0;"><strong>Focus:</strong> visual localization, simulation-based validation, closed-loop autonomy
+                    <br><strong>Tech:</strong> C++, Unreal Engine 5, RTSP, TCP/IP
+                </div>
+                
+                <div class="project-image-content" style="flex: 1; max-width: 50%; display: flex; align-items: center; justify-content: center;">
+                    <img src="fog_rain2.png" alt="Rain Demo in Unreal Ennironment" style="max-width: 100%; height: auto; display: block;">
+                </div>
+            </div>
+        </div>
+
+        <div class="project">
+            <h3> Visual–Inertial–LiDAR Odometry & Terrain Mapping (Agrobot) </h3>
+            <p style="margin: 0 0 10px 0;"> Worked as a Robotics Engineer on perception and localization systems for autonomous aerial platforms. </p>
+            <p style="margin: 0 0 10px 0;"> Designed and implemented a stereo visual–inertial–LiDAR odometry framework based on an Extended Kalman Filter (EKF), fusing camera, IMU, and LiDAR measurements to improve localization robustness and accuracy in outdoor environments. </p> 
+            <p style="margin: 0 0 10px 0;"> Developed a topographic mapping and localization pipeline for precision land surveying and terrain evaluation, focusing on consistent pose estimation and reliable spatial reconstruction. </p> 
+            <p style="margin: 0 0 10px 0;"> Implemented real-time 3D reconstruction from fused LiDAR–stereo point clouds to support navigation and environment understanding, with an emphasis on geometric consistency and practical deployment constraints.</p>
+            <p style="margin: 0 0 10px 0;"> <em> Further technical details available upon request. </em> </p>
+            <br style="margin: 0 0 10px 0;"><strong>Focus:</strong> multi-sensor fusion, state estimation, aerial robotics
+            <br><strong>Tech:</strong> C++, Python, EKF-based sensor fusion, stereo vision, LiDAR
+        </div>
+
+        <div class="project">
+            <h3> Monocular Inertial Visual Odometry for UAV Navigation ( TH Würzburg-Schweinfurt ) </h3>
+            <div class="project" style="display: flex; gap: 20px; align-items: flex-start;">
+            <div class="project-text-content" style="flex: 1; min-width: 50%;">
+                <p style="margin: 0 0 10px 0;"> Developed a monocular visual odometry and visual–inertial odometry (VO/VIO) pipeline for UAV and mobile robot navigation without reliance on GPS or external infrastructure. </p>
+
+                <p style="margin: 0 0 10px 0;">  Implemented an end-to-end VO/VIO system in Python using OpenCV and NumPy, supporting both pure image-based operation and optional IMU fusion. Camera motion is estimated via feature tracking across consecutive frames, essential matrix decomposition, and PnP-based pose recovery. </p>  
+                    
+                <p style="margin: 0 0 10px 0;">  Evaluated trajectory estimation on benchmark datasets (KITTI), real drone data (Tello), and simulated environments. The system achieved low translation error on the order of 1–1.3% on benchmark trajectories, demonstrating stable pose estimation under varied motion conditions. </p>
+                    
+                <p style="margin: 0 0 10px 0;"> Designed a modular architecture to enable reuse and integration into larger perception or navigation stacks and built a GUI-based interface for parameter configuration and visualization of trajectories, errors, and performance metrics to support experimentation and debugging. </p>
+
+                <h4> Custom Lucas–Kanade Optical Flow (from scratch) </h4>
+                <p style="margin: 0 0 10px 0;">
+                    Implemented a pyramidal Lucas–Kanade optical flow method from first principles, including image pyramids, gradient computation, and iterative refinement, to support robust feature tracking within the monocular VO pipeline. The implementation enabled fine-grained control over convergence behavior and failure handling compared to library-based solutions.
+                </p>
+                
+                <br style="margin: 0 0 10px 0;"><strong>Focus:</strong> Python, monocular VO, visual–inertial estimation, UAV navigation
+                <br><strong>Tech:</strong> Python, OpenCV, Optimization
+                <br><a href="https://ieeexplore.ieee.org/document/10735689">Paper Link</a> 
+                <br><a href="https://github.com/Yacynte/Monocular-Visual-Odometry">Code VIO</a>
+                <br><a href="https://github.com/Yacynte/optical_flow_pyramidal_LK">Code OpticalFlow</a>
+            </div>
+            
+            <div class="project-image-content" style="flex: 1; max-width: 50%; display: flex; flex-direction: column; gap: 10px; align-items: center; justify-content: flex-start;">
+                <img src="tello_square.png" alt="VO Trajectory Example" style="max-width: 100%; height: auto; display: block;">
+                <img src="translation_square.png" alt="Translation Error Example" style="max-width: 100%; height: auto; display: block;">
+            </div>
+            
+        </div>
+</div>
+
+    </div>
+
+    <!-- EDUCATION -->
+    <section id="education" >
+    <h2><span style="font-size: 1.2em; margin-top: 20px; ">📚</span> Educational Background</h2>
+    
+    <div style="margin-bottom: 25px;">
+        <h3 style="font-weight: bold; margin-bottom: 5px;">M.Eng. Artificial Intelligence for Autonomous Systems</h3>
+        <p style="margin-top: 0; margin-bottom: 5px; color: #555;">
+            <strong>TH Ingolstadt</strong> | Ingolstadt, Germany
+        </p>
+        <p style="font-style: italic; margin: 0; color: #555;">
+            Mar 2025 – Present
+        </p>
+    </div>
+    
+    <div style="margin-bottom: 25px;">
+        <h3 style="font-weight: bold; margin-bottom: 5px;">B.Eng. Mechatronics (Robotics & Automation)</h3>
+        <p style="margin-top: 0; margin-bottom: 5px; color: #555;">
+            <strong>TH Würzburg-Schweinfurt</strong> | Schweinfurt, Germany
+        </p>
+        <p style="font-style: italic; margin: 0; color: #555;">
+            Mar 2020 – Aug 2024
+        </p>
+        
+        <div style="margin-top: 10px;">
+            <strong style="display: block; margin-bottom: 3px;">Bachelor's Thesis (Grade: 1.3):</strong>
+            <p style="margin: 0; padding-left: 15px;">
+                Visual Odometry of a Drone with a Monocular Camera
+            </p>
+            <ul style="margin-top: 5px; padding-left: 35px;">
+                <li>
+                    Developed a Lucas-Kanade optical flow algorithm and a monocular VIO system achieving <1% translation error on KITTI.
+                </li>
+                <li>
+                    Work was published and presented at the REM2024 conference, IEEE.
+                </li>
+            </ul>
+        </div>
+    </div>
+    </section>
+
+    <!-- CONTACT -->
+    <div class="section">
+        <h2>Contact</h2>
+        <p>batchaya.yacynte@gmail.com • Ingolstadt, Germany</p>
+    </div>
+
+</div>
+
+<footer>
+    © 2025 Batchaya Yacynte
+</footer>
+</body>
+</html>
