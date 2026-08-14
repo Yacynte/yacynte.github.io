@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Yacynte Divan Batchaya Noumeme – Robotics & Perception Engineer</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #ffffff; color: #111; }
+    .container { width: 90%; max-width: 900px; margin: auto; padding: 40px 0; }
+    h1, h2 { font-weight: 600; }
+    h1 { font-size: 32px; margin-bottom: 5px; }
+    .subtitle { font-size: 18px; color: #555; margin-bottom: 20px; }
+    .links a { margin-right: 15px; text-decoration: none; color: #0066cc; }
+    .section { margin-top: 50px; }
+    .project { margin-bottom: 40px; }
+    .project img { max-width: 100%; border: 1px solid #ddd; margin-top: 10px; }
+    footer { margin-top: 50px; font-size: 14px; color: #666; text-align: center; }
+</style>
+</head>
+
+<body>
+<div class="container">
+        <!-- HEADER -->
+        <header id="portfolio-header" style="position: relative; ">
+        
+        <div id="image-container" style="
+            position: absolute; 
+            top: 20px;         
+            right: 20px;       
+            width: 180px;      
+            height: 180px;     
+            z-index: 10;       
+        ">
+            <img src="Divan-Batchaya.jpg" alt="Batchaya Yacynte Professional Headshot" 
+                 style="
+                     width: 100%; 
+                     height: 100%; 
+                     border-radius: 50%; /* Makes it a circle */
+                     object-fit: cover; 
+                     border: 3px solid #007bff;
+                 ">
+        </div>
+    
+        <div id="title-content" style="padding-right: 180px;">
+            <h1 style="font-size: 2em; margin-bottom: 5px;">Yacynte Divan Batchaya Noumeme</h1>
+            <div class="subtitle" style="font-size: 1.1em; color: #555; margin-bottom: 20px;">Robotics & Perception Engineer | M.Eng. AI Engineering & Autonomous Systems | Modern C++ | State Estimation & Multi-Sensor Fusion | Neuromorphic Vision | Spatial Geometry</div>
+        </div>
+        
+        <div class="links" style="margin-top: 10px;">
+            <a href="mailto:batchaya.yacynte@gmail.com" style="margin-right: 15px;">Email 📧</a>
+            <a href="https://www.linkedin.com/in/batchaya-yacynte-256357227/" style="margin-right: 15px;">LinkedIn 🔗 </a>
+            <a href="https://github.com/Yacynte" style="margin-right: 15px;">GitHub 💻</a>
+            <a href="https://ieeexplore.ieee.org/document/10735689">Publication 📄</a>
+        </div>
+    
+    </header>
+    <!-- About Me -->
+    <section id="about-me" style="padding: 10px 0;">
+        <h2><span style="font-size: 1.2em;">👤</span> About Me</h2>
+        <p style="font-size: 1em; line-height: 1.6; color: #333;">
+            I build perception and localization systems that turn research-grade vision algorithms into deployable autonomy for UAVs and mobile robots. My focus is on deterministic state estimation, robust sensor fusion, and resilient control-ready outputs for systems operating in real outdoor environments.
+        </p>
+        <p style="font-size: 1em; line-height: 1.6; color: #333;">
+            I combine modern C++ software design, probabilistic estimation, neuromorphic vision, and spatial geometry to solve hard problems at the intersection of perception and autonomy. I treat perception as a full-stack engineering problem: sensor modeling, synchronization, runtime performance, outlier rejection, and actuator-level integration.
+        </p>
+        <p style="font-size: 1em; line-height: 1.6; color: #333;">
+            My work is validated on embedded platforms, ROS/ROS2 stacks, Unreal Engine simulation, Nvidia Jetson hardware, and live field trials. I enjoy bringing complex sensor pipelines from concept to robust deployment in systems that must work outside controlled labs.
+        </p>
+        <ul style="padding-left: 0; list-style: none; margin-top: 10px; font-size: 0.9em; display: flex; flex-wrap: wrap; gap: 15px;">
+            <li style="font-weight: bold; color: #007bff;">#ModernCPP</li>
+            <li style="font-weight: bold; color: #007bff;">#StateEstimation</li>
+            <li style="font-weight: bold; color: #007bff;">#MultiSensorFusion</li>
+            <li style="font-weight: bold; color: #007bff;">#NeuromorphicVision</li>
+            <li style="font-weight: bold; color: #007bff;">#SpatialGeometry</li>
+        </ul>
+    </section>
+
+    <!-- PROJECTS -->
+    <div class="section" style="margin-top: 20px;">
+        <h2>In-Depth Technical Case Studies</h2>
+
+        <div class="project">
+            <h3>Monocular Visual Odometry for UAV Repositioning (Project ENGEL — AImotion Bavaria)</h3>
+            <p style="margin: 0 0 10px 0;"><strong>Architecture:</strong> Modern C++, SIFT, essential matrix decomposition, nonlinear sigmoid control loops.</p>
+            <p style="margin: 0 0 10px 0;"><strong>Challenge:</strong> Achieving deterministic quadcopter stabilization and repositioning across unpredictable, non-planar terrain where homography-based assumptions fail.</p>
+            <p style="margin: 0 0 10px 0;"><strong>Solution:</strong> Built a custom monocular VO pipeline that extracts and matches SIFT features across sequential frames, recovers relative ego-motion via essential matrix decomposition, and feeds continuous pose estimates into a bespoke sigmoid controller for smooth aggressive trajectory updates.</p>
+            <p style="margin: 0 0 10px 0;"><strong>Impact:</strong> Delivered a perception-to-action workflow capable of stable, autonomous repositioning in complex outdoor environments.</p>
+        </div>
+
+        <div class="project">
+            <h3>Probabilistic Event-Based Optical Flow with Affine RANSAC (Fraunhofer IVI)</h3>
+            <p style="margin: 0 0 10px 0;"><strong>Architecture:</strong> Modern C++ object-oriented design, ROS2, Nvidia Jetson, IDS uEye event camera, affine RANSAC optimization.</p>
+            <p style="margin: 0 0 10px 0;"><strong>Challenge:</strong> Overcoming severe temporal noise and asynchronous sparsity from neuromorphic DVS sensors, where frame-based tracking and rigid geometric matchers break down.</p>
+            <p style="margin: 0 0 10px 0;"><strong>Solution:</strong> Designed a probabilistic matcher enforcing microsecond-level temporal consistency with a Gaussian residual model, motion-adaptive variance scaling, and triplet validation before high-speed Affine RANSAC outlier rejection.</p>
+            <p style="margin: 0 0 10px 0;"><strong>Performance:</strong> Single-threaded pipeline processing 3.5 Meps on embedded Jetson hardware with reduced end-point error on the MVSEC benchmark.</p>
+        </div>
+
+        <div class="project">
+            <h3>Real-Time Stereo-Visual-LiDAR-Inertial Odometry & 3D Mapping (Agrobot)</h3>
+            <p style="margin: 0 0 10px 0;"><strong>Architecture:</strong> Modern C++, ROS, extended Kalman filters, LiDAR point clouds, stereo epipolar matching.</p>
+            <p style="margin: 0 0 10px 0;"><strong>Challenge:</strong> Building resilient localization and dense mapping for agricultural vehicles exposed to wheel slip, sensor dropouts, and unstructured terrain.</p>
+            <p style="margin: 0 0 10px 0;"><strong>Solution:</strong> Developed a multi-sensor fusion architecture that tightly and loosely couples stereo, LiDAR, and IMU streams. An EKF backend continuously estimates 6-DOF state while fused stereo and LiDAR fields produce real-time 3D surface reconstructions.</p>
+            <p style="margin: 0 0 10px 0;"><strong>Impact:</strong> Enabled robust terrain-aware navigation and survey-grade mapping for autonomous field robotics.</p>
+        </div>
+
+        <div class="project">
+            <h3>Monocular VIO Fortified by Resilient Outlier Rejection (Bachelor's Thesis / REM 2024 Publication)</h3>
+            <p style="margin: 0 0 10px 0;"><strong>Architecture:</strong> Python, ROS, pyramidal Lucas-Kanade optical flow, epipolar geometry, KITTI benchmark, DJI Tello hardware.</p>
+            <p style="margin: 0 0 10px 0;"><strong>Challenge:</strong> Preventing catastrophic drift in monocular VIO caused by false pixel matches under rapid, erratic quadcopter motion.</p>
+            <p style="margin: 0 0 10px 0;"><strong>Solution:</strong> Built an adaptive tracking framework that filters pyramidal LK flow vectors with epipolar constraints, rejecting geometrically invalid tracks and maintaining stable state estimates.</p>
+            <p style="margin: 0 0 10px 0;"><strong>Validation:</strong> Tested in Unreal Engine simulation, live DJI Tello flights, and KITTI benchmark datasets; work accepted for publication in IEEE Xplore REM 2024.</p>
+        </div>
+
+        <div class="project">
+            <h3>Full-Stack Drone Control, Simulation, & Sensor Noise Modeling (IDEE)</h3>
+            <p style="margin: 0 0 10px 0;"><strong>Architecture:</strong> ROS, Unreal Engine, Linux system configuration, 3D CAD modeling, MATLAB.</p>
+            <p style="margin: 0 0 10px 0;"><strong>Challenge:</strong> Bridging physical sensor realities and safe simulated validation for autonomous drone systems.</p>
+            <p style="margin: 0 0 10px 0;"><strong>Solution:</strong> Built photorealistic Unreal Engine drone worlds integrated with ROS for visual odometry and autonomy testing, then derived analytical noise profiles from LiDAR and encoder data to model physical sensor uncertainty under motion.</p>
+            <p style="margin: 0 0 10px 0;"><strong>Impact:</strong> Delivered a full-stack workflow for hardware-informed simulation, sensor modeling, and safe autonomy validation.</p>
+        </div>
+    </div>
+
+    <section id="strengths" class="section">
+        <h2><span style="font-size: 1.2em;">⚡</span> Core strengths</h2>
+        <ul style="padding-left: 0; list-style: none; margin-top: 10px; color: #333; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;">
+            <li><strong>Deterministic state estimation</strong> — EKF, VIO, and geometry-based pose recovery for real-time autonomy.</li>
+            <li><strong>Multi-sensor fusion</strong> — stereo, LiDAR, IMU, event cameras, and visual-inertial pipelines.</li>
+            <li><strong>Robust perception systems</strong> — outlier rejection, temporal consistency, and embedded runtime design.</li>
+            <li><strong>Simulation-to-hardware validation</strong> — ROS/ROS2, Unreal Engine, Nvidia Jetson, and live field trials.</li>
+        </ul>
+    </section>
+
+    <section id="education" class="section">
+        <h2><span style="font-size: 1.2em;">📚</span> Education</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; margin-top: 20px;">
+            <div>
+                <h3 style="font-weight: bold; margin-bottom: 5px;">M.Eng. Artificial Intelligence for Autonomous Systems</h3>
+                <p style="margin: 0 0 5px 0; color: #555;"><strong>TH Ingolstadt</strong> | Ingolstadt, Germany</p>
+                <p style="font-style: italic; margin: 0; color: #555;">Mar 2025 – Present</p>
+            </div>
+            <div>
+                <h3 style="font-weight: bold; margin-bottom: 5px;">B.Eng. Mechatronics (Robotics & Automation)</h3>
+                <p style="margin: 0 0 5px 0; color: #555;"><strong>TH Würzburg-Schweinfurt</strong> | Schweinfurt, Germany</p>
+                <p style="font-style: italic; margin: 0 0 10px 0; color: #555;">Mar 2020 – Aug 2024</p>
+                <p style="margin: 0 0 5px 0; font-weight: bold; color: #333;">Bachelor's Thesis (Grade: 1.3)</p>
+                <p style="margin: 0 0 5px 0; padding-left: 15px; color: #333;">Visual Odometry of a Drone with a Monocular Camera.</p>
+                <ul style="margin: 0; padding-left: 20px; color: #333;">
+                    <li>Implemented a Lucas-Kanade optical flow based monocular VIO pipeline.</li>
+                    <li>Published and presented at REM 2024, IEEE Xplore.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <h2>Contact</h2>
+        <p style="margin: 0 0 6px 0; color: #333;">batchaya.yacynte@gmail.com</p>
+        <p style="margin: 0; color: #333;">Ingolstadt, Germany</p>
+    </section>
+
+</div>
+
+<footer>
+    © 2026 Yacynte Divan Batchaya Noumeme
+</footer>
+</body>
+</html>
