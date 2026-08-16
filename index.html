@@ -71,7 +71,7 @@
     <div class="hero-left">
 
       <div class="hero-available">
-        Available September 2026
+        Available October 2026
       </div>
 
       <h1 class="hero-name">
@@ -488,11 +488,11 @@
                   muted
                   playsinline
                   preload="auto"
-                  poster="assets/engel-poster.png"
+                  poster="assets/Results_Capture_1_001.png"
                 >
 
                   <source
-                    src="assets/engel.mp4"
+                    src="assets/engel-01.mp4"
                     type="video/mp4"
                   >
 
@@ -504,21 +504,21 @@
                 <!-- GALLERY IMAGES -->
 
                 <img
-                  src="assets/engel-01.jpg"
+                  src="assets/Results_Capture_003.png"
+                  alt="Project ENGEL UAV repositioning"
+                >
+
+                <img
+                  src="assets/comparison_plot_rototionLog_1_002.png"
                   alt="Project ENGEL simulation"
                 >
 
                 <img
-                  src="assets/engel-02.jpg"
+                  src="assets/comparison_plot_transotionLog_2_001.png"
                   alt="Project ENGEL validation environment"
                 >
 
-                <img
-                  src="assets/engel-03.jpg"
-                  alt="Project ENGEL UAV repositioning"
-                >
-
-
+                
                 <!-- Status label -->
 
                 <span class="media-status">
@@ -572,33 +572,87 @@
               Event-Based Optical Flow for Real-Time TTC Estimation
             </div>
 
+            <div class="work-main">
 
-            <div class="work-desc">
-              Probabilistic event-based optical flow pipeline for Time-to-Collision
-              estimation in safety-critical agricultural autonomy. Gaussian residual
-              model with motion-adaptive variance scaling and affine RANSAC outlier
-              rejection, integrated into ROS2 with an IDS uEye DVS sensor on NVIDIA
-              Jetson embedded hardware.
+                <!-- TEXT -->
+                <div class="work-text">
+
+                    <div class="work-desc">
+                    Probabilistic event-based optical flow pipeline for Time-to-Collision
+                    estimation in safety-critical agricultural autonomy. Gaussian residual
+                    model with motion-adaptive variance scaling and affine RANSAC outlier
+                    rejection, integrated into ROS2 with an IDS uEye DVS sensor on NVIDIA
+                    Jetson embedded hardware.
+                    </div>
+
+
+                    <div class="work-metrics">
+
+                    <span class="metric">
+                        2.33 px AEPE
+                    </span>
+
+                    <span class="metric">
+                        Outperforms UnFlow, EV-FlowNet, Shiba et al.
+                    </span>
+
+                    <span class="metric">
+                        3.5 Meps single-threaded on Jetson Orin
+                    </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                    MEDIA
+                ================================================== -->
+
+                <div
+                    class="work-media"
+                    data-media
+                    aria-label="Project ENGEL media"
+                >
+
+                    <!-- VIDEO -->
+
+                    <video
+                    class="project-video"
+                    autoplay
+                    muted
+                    playsinline
+                    preload="auto"
+                    poster="assets/flow_with_gt_time.png"
+                    >
+
+                    <source
+                        src="assets/flow_results.mp4"
+                        type="video/mp4"
+                    >
+
+                    Your browser does not support HTML5 video.
+
+                    </video>
+
+
+                    <!-- GALLERY IMAGES -->
+
+                    <img
+                    src="assets/flow_with_gt_time.png"
+                    alt="Project ENGEL UAV repositioning"
+                    >
+                    
+                    <!-- Status label -->
+
+                    <span class="media-status">
+                    Kosinus · Event flow
+                    </span>
+
+                </div>
+
             </div>
-
-
-            <div class="work-metrics">
-
-              <span class="metric">
-                2.33 px AEPE
-              </span>
-
-              <span class="metric">
-                Outperforms UnFlow, EV-FlowNet, Shiba et al.
-              </span>
-
-              <span class="metric">
-                3.5 Meps single-threaded on Jetson Orin
-              </span>
-
-            </div>
-
-          </div>
+        </div>
 
 
           <div class="work-arrow work-arrow-hidden">
