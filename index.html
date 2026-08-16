@@ -648,9 +648,13 @@
                 </div>
               </div>
 
-              <div class="work-media" data-media aria-label="Project ENGEL media preview">
-                <video muted playsinline preload="metadata" poster="assets/engel-poster.png">
+              <div class="work-media" data-media aria-label="Project ENGEL media preview"
+                  onclick="event.preventDefault(); event.stopPropagation();">
+
+                <video muted playsinline controls preload="metadata"
+                      poster="assets/engel-poster.jpg">
                   <source src="assets/engel.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
                 </video>
 
                 <img src="assets/engel-01.jpg"
