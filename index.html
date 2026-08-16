@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Batchaya Yacynte — Perception &amp; Autonomy Engineer</title>
-  <meta name="description" content="Perception engineer building real-time vision systems for GPS-denied UAV navigation. M.Eng. AI Engineering &amp; Autonomous Systems, TH Ingolstadt. Available October 2026.">
+  <meta name="description" content="Perception engineer building real-time vision systems for GPS-denied UAV navigation. M.Eng. AI Engineering &amp; Autonomous Systems, TH Ingolstadt. Available September 2026.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -388,7 +388,8 @@
       .hero-photo { width: 140px; height: 168px; }
       .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-      .work-item { grid-template-columns: 40px 1fr; }
+      .work-item, .work-item.has-media { grid-template-columns: 40px 1fr; }
+      .work-item.has-media .work-media { grid-column: 2; width: 100%; max-width: 420px; margin-top: 1rem; }
       .work-arrow { display: none; }
       .pub-card { grid-template-columns: 1fr; gap: 1.25rem; }
     }
@@ -416,7 +417,7 @@
   <!-- HERO -->
   <div class="hero">
     <div class="hero-left">
-      <div class="hero-available">Available October 2026</div>
+      <div class="hero-available">Available September 2026</div>
       <h1 class="hero-name">
         Batchaya Yacynte - <br>
         <em>Perception</em> engineer.
@@ -512,7 +513,7 @@
         <div class="about-sidebar">
           <div class="sidebar-block">
             <div class="sidebar-key">Open to</div>
-            <div class="sidebar-val">Robotics &amp; computer vision roles<br>in Germany &middot; October 2026</div>
+            <div class="sidebar-val">Robotics &amp; computer vision roles<br>in Germany &middot; September 2026</div>
           </div>
           <div class="sidebar-block">
             <div class="sidebar-key">Based in</div>
@@ -557,7 +558,7 @@
       <div class="work-list">
 
         <!-- 01 -->
-        <a class="work-item" href="https://drive.google.com/file/d/1XDKxEPV-a2gEcKce-REYQuj8g54tIHwB/view?usp=sharing" target="_blank" rel="noopener">
+        <a class="work-item has-media" href="https://drive.google.com/file/d/1XDKxEPV-a2gEcKce-REYQuj8g54tIHwB/view?usp=sharing" target="_blank" rel="noopener">
           <div class="work-num">01</div>
           <div>
             <div class="work-tags">
@@ -567,12 +568,7 @@
             </div>
             <div class="work-title">Project ENGEL: Vision-Based GPS-Denied UAV Repositioning</div>
             <div class="work-desc">
-              Real-time monocular pipeline for autonomous helicopter landing in GPS-denied environments.
-              SuperPoint + LightGlue feature matching feeds PNEC (Probabilistic Normal Epipolar
-              Constraint) pose recovery, which extracts rotation without requiring translation,
-              handling all degenerate cases where recoverPose fails, translation is then recovered using SVD once rotation is known.
-              The Pose drives a sigmoid-mapped velocity controller in a closed loop. Written in C++ with Python asyncio UDP architecture,
-              validated in Unreal Engine 5 under clear and rainy sky. Outdoor flight validation ongoing.
+              Real-time monocular pipeline for autonomous helicopter landing in GPS-denied environments. Built the Unreal Engine 5 validation environment, including a continuous image stream, UDP-based UAV control, and simulated weather effects such as rain and snow for repeatable testing. SuperPoint + LightGlue feature matching feeds PNEC pose recovery; the resulting pose drives a sigmoid-mapped velocity controller in a closed loop. Developed ONNX-exportable SuperPoint and LightGlue inference pipelines for deployment across different devices. Validated in UE5 simulation under clear and adverse-weather scenarios; outdoor flight validation ongoing.
             </div>
             <div class="work-metrics">
               <span class="metric">~10 cm lateral accuracy</span>
@@ -581,6 +577,18 @@
               <span class="metric">&gt;98% image similarity</span>
               <span class="metric">Clear + rainy sky validated</span>
             </div>
+          </div>
+          <div class="work-media" data-media
+               data-images="assets/engel-01.jpg,assets/engel-02.jpg,assets/engel-03.jpg"
+               aria-label="Project ENGEL media preview">
+            <video muted playsinline preload="metadata"
+                   poster="assets/engel-poster.jpg">
+              <source src="assets/engel.mp4" type="video/mp4">
+            </video>
+            <img src="assets/engel-01.jpg" alt="Project ENGEL simulation" class="is-visible">
+            <img src="assets/engel-02.jpg" alt="Project ENGEL validation environment">
+            <img src="assets/engel-03.jpg" alt="Project ENGEL UAV repositioning">
+            <span class="media-status">ENGEL · simulation</span>
           </div>
           <div class="work-arrow">↗</div>
         </a>
@@ -717,7 +725,7 @@
         <p class="eyebrow">Contact</p>
         <h2 class="section-title">Let's build<br>something real.</h2>
         <p class="contact-intro">
-          Looking for robotics and computer vision roles in Germany starting October 2026.
+          Looking for robotics and computer vision roles in Germany starting September 2026.
           If you work on autonomous systems, UAVs, or embedded perception — let's talk.
         </p>
         <div class="contact-links">
@@ -755,6 +763,92 @@
       </div>
     </div>
   </footer>
+
+
+<script>
+(() => {
+  const media = document.querySelectorAll('[data-media]');
+  const IMAGE_DURATION = 7000; // 5–10 sec: currently 7 sec
+
+  media.forEach((box) => {
+    const video = box.querySelector('video');
+    const images = [...box.querySelectorAll('img')];
+    const status = box.querySelector('.media-status');
+    let index = 0;
+    let timer = null;
+    let paused = false;
+
+    const clear = () => {
+      if (timer) {
+        clearTimeout(timer);
+        timer = null;
+      }
+    };
+
+    const showImage = (i) => {
+      images.forEach((img, n) => img.classList.toggle('is-visible', n === i));
+      index = i;
+    };
+
+    const scheduleNext = () => {
+      clear();
+      if (paused) return;
+      timer = setTimeout(() => {
+        showImage((index + 1) % images.length);
+        scheduleNext();
+      }, IMAGE_DURATION);
+    };
+
+    const startVideo = () => {
+      clear();
+      box.classList.remove('is-gallery');
+      status.textContent = 'ENGEL · simulation';
+      images.forEach(img => img.classList.remove('is-visible'));
+      video.currentTime = 0;
+      const playPromise = video.play();
+      if (playPromise) playPromise.catch(() => {});
+    };
+
+    video.addEventListener('ended', () => {
+      if (paused) return;
+      box.classList.add('is-gallery');
+      status.textContent = 'ENGEL · validation';
+      showImage(0);
+      scheduleNext();
+    });
+
+    box.addEventListener('mouseenter', () => {
+      paused = true;
+      clear();
+      box.classList.add('is-paused');
+      if (!video.paused && !video.ended) video.pause();
+    });
+
+    box.addEventListener('mouseleave', () => {
+      paused = false;
+      box.classList.remove('is-paused');
+
+      // If the user hovered the video, resume it.
+      if (!box.classList.contains('is-gallery') && !video.ended) {
+        const p = video.play();
+        if (p) p.catch(() => {});
+      } else {
+        // If hovering an image, continue the image rotation from where it stopped.
+        scheduleNext();
+      }
+    });
+
+    // Respect reduced-motion preferences by starting with the poster/image.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      box.classList.add('is-gallery');
+      showImage(0);
+      status.textContent = 'ENGEL · gallery';
+    } else {
+      startVideo();
+    }
+  });
+})();
+</script>
 
 </body>
 </html>

@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Batchaya Yacynte — Perception &amp; Autonomy Engineer</title>
+  <meta name="description" content="Perception engineer building real-time vision systems for GPS-denied UAV navigation. M.Eng. AI Engineering &amp; Autonomous Systems, TH Ingolstadt. Available October 2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── Reset ─────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* ── Tokens ─────────────────────────────── */
+    :root {
+      --bg:           #FAFAF7;
+      --surface:      #F2F1EC;
+      --border:       #E5E3DA;
+      --text-1:       #0C0B09;
+      --text-2:       #6A6860;
+      --text-3:       #A6A49D;
+      --accent:       #1A50D6;
+      --accent-soft:  #EDF1FD;
+      --nav-h:        64px;
+      --font-d:       'Syne', sans-serif;
+      --font-b:       'DM Sans', sans-serif;
+      --font-m:       'JetBrains Mono', monospace;
+      --max-w:        1100px;
+      --px:           clamp(1.25rem, 5vw, 3rem);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text-1);
+      font-family: var(--font-b);
+      font-size: 1rem;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ─────────────────────────────────── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 var(--px);
+      background: rgba(250,250,247,0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: var(--font-d);
+      font-weight: 700; font-size: 1rem;
+      letter-spacing: -0.01em;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 2rem;
+    }
+    .nav-links a {
+      font-size: 0.875rem; color: var(--text-2);
+      transition: color 0.18s;
+    }
+    .nav-links a:hover { color: var(--text-1); }
+    .nav-cta {
+      color: var(--accent) !important;
+      border: 1px solid currentColor;
+      padding: 0.38rem 1rem;
+      border-radius: 100px;
+      transition: background 0.18s, color 0.18s !important;
+    }
+    .nav-cta:hover {
+      background: var(--accent) !important;
+      color: #fff !important;
+    }
+
+    /* ── Layout util ──────────────────────────── */
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--px); }
+    .divider { border: none; border-top: 1px solid var(--border); }
+
+    /* ── Hero ────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      padding: calc(var(--nav-h) + 4rem) var(--px) 4rem;
+      max-width: var(--max-w); margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 3rem;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Signature: targeting-reticle circles — references GPS-denied landing */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero-visual::before, .hero-visual::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(26, 80, 214, 0.10);
+      pointer-events: none;
+    }
+    .hero-visual::before {
+      width: 400px; height: 400px;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .hero-visual::after {
+      width: 270px; height: 270px;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .hero-photo {
+      width: 260px; height: 300px;
+      object-fit: cover; object-position: center top;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      position: relative; z-index: 1;
+      filter: grayscale(8%);
+    }
+
+    .hero-available {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: var(--font-m);
+      font-size: 0.72rem; font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.05em; text-transform: uppercase;
+      margin-bottom: 1.75rem;
+    }
+    .hero-available::before {
+      content: '';
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #22C55E;
+      box-shadow: 0 0 0 3px rgba(34,197,94,0.22);
+      flex-shrink: 0;
+    }
+
+    .hero-name {
+      font-family: var(--font-d);
+      font-size: clamp(2.6rem, 6vw, 4.75rem);
+      font-weight: 800; line-height: 1.04;
+      letter-spacing: -0.03em;
+      color: var(--text-1);
+      margin-bottom: 1.25rem;
+    }
+    .hero-name em { font-style: normal; color: var(--accent); }
+
+    .hero-tagline {
+      font-size: clamp(1rem, 1.8vw, 1.15rem);
+      color: var(--text-2); font-weight: 300;
+      max-width: 520px; line-height: 1.75;
+      margin-bottom: 2.25rem;
+    }
+
+    .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      font-size: 0.875rem; font-weight: 500;
+      padding: 0.6rem 1.35rem;
+      border-radius: 100px; border: 1px solid transparent;
+      transition: all 0.18s; cursor: pointer;
+    }
+    .btn-primary { background: var(--text-1); color: var(--bg); }
+    .btn-primary:hover { background: #2a2921; }
+    .btn-secondary { background: transparent; color: var(--text-1); border-color: var(--border); }
+    .btn-secondary:hover { border-color: var(--text-2); }
+
+    /* ── Stats ───────────────────────────────── */
+    .stats { padding: 3rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+    .stat-value {
+      font-family: var(--font-d);
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 800; line-height: 1;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.35rem;
+    }
+    .stat-value sup {
+      font-size: 0.45em; color: var(--accent);
+      vertical-align: super; font-weight: 700;
+    }
+    .stat-label {
+      font-family: var(--font-m);
+      font-size: 0.68rem; color: var(--text-3);
+      letter-spacing: 0.05em; text-transform: uppercase;
+      line-height: 1.5;
+    }
+
+    /* ── Credentials ─────────────────────────── */
+    .credentials { padding: 3rem 0; }
+    .cred-label {
+      font-family: var(--font-m);
+      font-size: 0.68rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-3);
+      margin-bottom: 1.25rem;
+    }
+    .cred-list { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .cred-badge {
+      font-family: var(--font-m);
+      font-size: 0.75rem; font-weight: 500;
+      color: var(--text-2);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.9rem; border-radius: 100px;
+    }
+
+    /* ── Section headers ─────────────────────── */
+    .eyebrow {
+      font-family: var(--font-m);
+      font-size: 0.68rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: var(--font-d);
+      font-size: clamp(1.65rem, 3.2vw, 2.4rem);
+      font-weight: 700; letter-spacing: -0.025em; line-height: 1.12;
+      margin-bottom: 1.25rem;
+    }
+
+    /* ── About ───────────────────────────────── */
+    .about-section { padding: 6rem 0; }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 320px;
+      gap: 5rem; align-items: start;
+    }
+    .about-body p {
+      color: var(--text-2); font-size: 1.03rem;
+      margin-bottom: 1rem; max-width: 560px;
+    }
+    .about-body p:last-child { margin-bottom: 0; }
+    .sidebar-block { margin-bottom: 1.75rem; }
+    .sidebar-key {
+      font-family: var(--font-m);
+      font-size: 0.65rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-3);
+      margin-bottom: 0.5rem;
+    }
+    .sidebar-val { font-size: 0.9rem; color: var(--text-2); line-height: 1.5; }
+    .chips { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.4rem; }
+    .chip {
+      font-family: var(--font-m); font-size: 0.68rem;
+      background: var(--accent-soft); color: var(--accent);
+      padding: 0.22rem 0.6rem; border-radius: 3px;
+    }
+
+    /* ── Work list ───────────────────────────── */
+    .work-section { padding: 6rem 0; }
+    .work-intro { color: var(--text-2); max-width: 520px; margin-bottom: 0; font-size: 1.03rem; }
+    .work-list { margin-top: 3rem; }
+
+    .work-item {
+      display: grid;
+      grid-template-columns: 52px 1fr 24px;
+      gap: 1.5rem; align-items: start;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      color: inherit;
+      transition: background 0.12s;
+    }
+    .work-item:first-child { border-top: 1px solid var(--border); }
+    a.work-item { cursor: pointer; }
+    a.work-item:hover .work-title { color: var(--accent); }
+    a.work-item:hover .work-arrow { transform: translate(3px, -3px); color: var(--accent); }
+
+    .work-num {
+      font-family: var(--font-m); font-size: 0.68rem;
+      color: var(--text-3); padding-top: 0.3rem;
+      letter-spacing: 0.03em;
+    }
+    .work-tags {
+      display: flex; flex-wrap: wrap; gap: 0; margin-bottom: 0.5rem;
+    }
+    .work-tag {
+      font-family: var(--font-m); font-size: 0.63rem;
+      letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-3);
+    }
+    .work-tag + .work-tag::before { content: ' · '; }
+    .work-title {
+      font-family: var(--font-d);
+      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+      font-weight: 600; letter-spacing: -0.015em;
+      color: var(--text-1); margin-bottom: 0.5rem;
+      transition: color 0.18s;
+    }
+    .work-desc {
+      font-size: 0.91rem; color: var(--text-2);
+      max-width: 580px; line-height: 1.65;
+    }
+    .work-metrics {
+      margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.4rem;
+    }
+    .metric {
+      font-family: var(--font-m); font-size: 0.67rem;
+      color: var(--text-2);
+      background: var(--surface); border: 1px solid var(--border);
+      padding: 0.18rem 0.55rem; border-radius: 100px;
+    }
+    .work-arrow {
+      font-size: 1rem; color: var(--text-3);
+      padding-top: 0.3rem;
+      transition: transform 0.18s, color 0.18s;
+    }
+
+    /* ── Publication ─────────────────────────── */
+    .pub-section { padding: 6rem 0; }
+    .pub-card {
+      margin-top: 2.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px; padding: 2.25rem;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 2rem; align-items: center;
+    }
+    .pub-venue {
+      font-family: var(--font-m); font-size: 0.68rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.5rem;
+    }
+    .pub-title {
+      font-family: var(--font-d); font-size: 1.15rem; font-weight: 600;
+      letter-spacing: -0.015em; color: var(--text-1); margin-bottom: 0.3rem;
+    }
+    .pub-authors { font-size: 0.85rem; color: var(--text-2); }
+    .pub-doi { font-family: var(--font-m); font-size: 0.68rem; color: var(--text-3); margin-top: 0.3rem; }
+    .pub-cta {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      font-size: 0.85rem; font-weight: 500;
+      color: var(--accent); border: 1px solid var(--accent);
+      padding: 0.5rem 1.1rem; border-radius: 100px; white-space: nowrap;
+      transition: all 0.18s;
+    }
+    .pub-cta:hover { background: var(--accent); color: #fff; }
+
+    /* ── Contact ─────────────────────────────── */
+    .contact-section { padding: 6rem 0; }
+    .contact-inner { max-width: 580px; }
+    .contact-intro { color: var(--text-2); margin-top: -0.25rem; }
+    .contact-links { margin-top: 2.5rem; }
+    .contact-row {
+      display: flex; align-items: center;
+      padding: 1rem 0; border-bottom: 1px solid var(--border);
+      color: var(--text-2); transition: color 0.18s;
+    }
+    .contact-row:first-child { border-top: 1px solid var(--border); }
+    .contact-row:hover { color: var(--text-1); }
+    .contact-key {
+      font-family: var(--font-m); font-size: 0.65rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-3); width: 88px; flex-shrink: 0;
+    }
+    .contact-val { flex: 1; font-size: 0.92rem; }
+    .contact-arrow { font-size: 0.85rem; }
+
+    /* ── Footer ──────────────────────────────── */
+    footer { padding: 2.5rem 0; border-top: 1px solid var(--border); }
+    .footer-inner {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 0.75rem;
+    }
+    .footer-logo { font-family: var(--font-d); font-weight: 600; font-size: 0.9rem; }
+    .footer-meta {
+      font-family: var(--font-m); font-size: 0.65rem;
+      color: var(--text-3); letter-spacing: 0.05em; text-transform: uppercase;
+    }
+
+    /* ── Responsive ──────────────────────────── */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: calc(var(--nav-h) + 3rem);
+      }
+      .hero-visual { order: -1; justify-content: flex-start; }
+      .hero-visual::before { width: 220px; height: 220px; }
+      .hero-visual::after  { width: 150px; height: 150px; }
+      .hero-photo { width: 140px; height: 168px; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+      .work-item { grid-template-columns: 40px 1fr; }
+      .work-arrow { display: none; }
+      .pub-card { grid-template-columns: 1fr; gap: 1.25rem; }
+    }
+
+    @media (max-width: 560px) {
+      :root { --px: 1.25rem; }
+      .hero-name { font-size: 2.25rem; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="#" class="nav-logo">Batchaya Yacynte</a>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact" class="nav-cta">Get in touch</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-available">Available October 2026</div>
+      <h1 class="hero-name">
+        Batchaya Yacynte - <br>
+        <em>Perception</em> engineer.
+      </h1>
+      <p class="hero-tagline">
+        Building the vision systems that let machines navigate when GPS fails.
+        M.Eng. AI Engineering &amp; Autonomous Systems &middot; TH Ingolstadt &middot;
+        Airbus Helicopters consortium.
+      </p>
+      <div class="hero-actions">
+        <a href="#work" class="btn btn-primary">See my work ↓</a>
+        <a href="https://ieeexplore.ieee.org/document/10735689" target="_blank" rel="noopener" class="btn btn-secondary">IEEE Publication ↗</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img
+        src="https://yacynte.github.io/Divan-Batchaya.jpg"
+        alt="Batchaya Yacynte"
+        class="hero-photo"
+        loading="eager"
+      >
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div>
+          <div class="stat-value">4<sup>+</sup></div>
+          <div class="stat-label">Years building<br>perception systems</div>
+        </div>
+        <div>
+          <div class="stat-value">~10<sup>cm</sup></div>
+          <div class="stat-label">Lateral accuracy<br>Project ENGEL</div>
+        </div>
+        <div>
+          <div class="stat-value">1<sup>st</sup></div>
+          <div class="stat-label">Author IEEE publication<br>REM 2024</div>
+        </div>
+        <div>
+          <div class="stat-value">3</div>
+          <div class="stat-label">Real hardware platforms<br>validated outdoors</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CREDENTIALS -->
+  <div class="credentials">
+    <div class="container">
+      <p class="cred-label">Affiliated with</p>
+      <div class="cred-list">
+        <span class="cred-badge">TH Ingolstadt - M.Eng.</span>
+        <span class="cred-badge">Airbus Helicopters Consortium</span>
+        <span class="cred-badge">Fraunhofer IVI</span>
+        <span class="cred-badge">AIMotion Bavaria</span>
+        <span class="cred-badge">IEEE REM 2024 - First Author</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ABOUT -->
+  <section class="about-section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-body">
+          <p class="eyebrow">About</p>
+          <h2 class="section-title">Engineer, researcher,<br>builder.</h2>
+          <p>
+            I'm a Cameroonian robotics engineer based in Ingolstadt, Germany.
+            My work lives at the boundary where computer vision, probabilistic estimation,
+            and control systems meet, building perception pipelines that have to perform
+            on real hardware, outdoors, under pressure.
+          </p>
+          <p>
+            My master's thesis, developed within an Airbus Helicopters consortium, delivers
+            closed-loop GPS-denied UAV repositioning with ~10 cm lateral accuracy and ±0.1°
+            heading precision in under 30 seconds, validated in both clear and rainy simulation,
+            using only an onboard monocular camera. Before that, at Fraunhofer IVI,
+            I designed an event-based optical flow system for Time-to-Collision estimation
+            that outperformed three state-of-the-art methods on the MVSEC benchmark,
+            running single-threaded on NVIDIA Jetson.
+          </p>
+          <p>
+            I care about systems that work outside the lab.
+            My work is validated on KITTI, EuRoC, custom DJI Tello flights with OptiTrack ground truth,
+            and live outdoor field tests, not just in simulation.
+          </p>
+        </div>
+        <div class="about-sidebar">
+          <div class="sidebar-block">
+            <div class="sidebar-key">Open to</div>
+            <div class="sidebar-val">Robotics &amp; computer vision roles<br>in Germany &middot; October 2026</div>
+          </div>
+          <div class="sidebar-block">
+            <div class="sidebar-key">Based in</div>
+            <div class="sidebar-val">Ingolstadt, Germany</div>
+          </div>
+          <div class="sidebar-block">
+            <div class="sidebar-key">Core stack</div>
+            <div class="chips">
+              <span class="chip">C++</span>
+              <span class="chip">Python</span>
+              <span class="chip">ROS2</span>
+              <span class="chip">PyTorch</span>
+              <span class="chip">OpenCV</span>
+              <span class="chip">UE5</span>
+              <span class="chip">Jetson</span>
+              <span class="chip">Event Cameras</span>
+              <span class="chip">KiCad</span>
+              <span class="chip">Fusion 360</span>
+            </div>
+          </div>
+          <div class="sidebar-block">
+            <div class="sidebar-key">Languages</div>
+            <div class="sidebar-val">French &amp; English (Native)<br>German (B2)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- WORK -->
+  <section class="work-section" id="work">
+    <div class="container">
+      <p class="eyebrow">Selected work</p>
+      <h2 class="section-title">Projects that ship.</h2>
+      <p class="work-intro">
+        Real-world perception systems, embedded deployments, and autonomous platforms,
+        from Airbus-consortium UAVs to Fraunhofer agricultural robotics.
+      </p>
+
+      <div class="work-list">
+
+        <!-- 01 -->
+        <a class="work-item" href="https://drive.google.com/file/d/1XDKxEPV-a2gEcKce-REYQuj8g54tIHwB/view?usp=sharing" target="_blank" rel="noopener">
+          <div class="work-num">01</div>
+          <div>
+            <div class="work-tags">
+              <span class="work-tag">Master's Thesis</span>
+              <span class="work-tag">Airbus Helicopters Consortium · AIMotion Bavaria</span>
+              <span class="work-tag">2025 – 2026</span>
+            </div>
+            <div class="work-title">Project ENGEL: Vision-Based GPS-Denied UAV Repositioning</div>
+            <div class="work-desc">
+              Real-time monocular pipeline for autonomous helicopter landing in GPS-denied environments.
+              SuperPoint + LightGlue feature matching feeds PNEC (Probabilistic Normal Epipolar
+              Constraint) pose recovery, which extracts rotation without requiring translation,
+              handling all degenerate cases where recoverPose fails, translation is then recovered using SVD once rotation is known.
+              The Pose drives a sigmoid-mapped velocity controller in a closed loop. Written in C++ with Python asyncio UDP architecture,
+              validated in Unreal Engine 5 under clear and rainy sky. Outdoor flight validation ongoing.
+            </div>
+            <div class="work-metrics">
+              <span class="metric">~10 cm lateral accuracy</span>
+              <span class="metric">~0.1° heading accuracy</span>
+              <span class="metric">Converges in &lt;30 s</span>
+              <span class="metric">&gt;98% image similarity</span>
+              <span class="metric">Clear + rainy sky validated</span>
+            </div>
+          </div>
+          <div class="work-arrow">↗</div>
+        </a>
+
+        <!-- 02 -->
+        <div class="work-item">
+          <div class="work-num">02</div>
+          <div>
+            <div class="work-tags">
+              <span class="work-tag">Research · KoSiNuS</span>
+              <span class="work-tag">Fraunhofer IVI</span>
+              <span class="work-tag">Apr 2025 – Mar 2026</span>
+            </div>
+            <div class="work-title">Event-Based Optical Flow for Real-Time TTC Estimation</div>
+            <div class="work-desc">
+              Probabilistic event-based optical flow pipeline for Time-to-Collision estimation
+              in safety-critical agricultural autonomy. Gaussian residual model with motion-adaptive
+              variance scaling and affine RANSAC outlier rejection, integrated into ROS2 with an
+              IDS uEye DVS sensor on NVIDIA Jetson embedded hardware.
+            </div>
+            <div class="work-metrics">
+              <span class="metric">2.33 px AEPE</span>
+              <span class="metric">Outperforms UnFlow, EV-FlowNet, Shiba et al.</span>
+              <span class="metric">3.5 Meps single-threaded on Jetson Orin</span>
+            </div>
+          </div>
+          <div class="work-arrow" style="color:transparent">–</div>
+        </div>
+
+        <!-- 03 -->
+        <div class="work-item">
+          <div class="work-num">03</div>
+          <div>
+            <div class="work-tags">
+              <span class="work-tag">Personal Project</span>
+              <span class="work-tag">Custom UAV Build</span>
+            </div>
+            <div class="work-title">Autonomous Surface Area Mapping Drone</div>
+            <div class="work-desc">
+              Designed and hand-built a custom ~25&times;25 cm UAV (Betaflight F405 V3 + Radxa A7A)
+              and developed a full stereo vision pipeline for autonomous land surface area measurement.
+              Targets agricultural and surveying use cases as a low-cost alternative to total stations.
+              Full pipeline from stereo depth estimation to contour detection and geometric area computation,
+              generating topographic and plat map outputs.
+            </div>
+            <div class="work-metrics">
+              <span class="metric">KITTI validated</span>
+              <span class="metric">Topographic + plat map outputs</span>
+              <span class="metric">Custom hardware build</span>
+            </div>
+          </div>
+          <div class="work-arrow" style="color:transparent">–</div>
+        </div>
+
+        <!-- 04 -->
+        <div class="work-item">
+          <div class="work-num">04</div>
+          <div>
+            <div class="work-tags">
+              <span class="work-tag">Course Project</span>
+              <span class="work-tag">Grade 1.0</span>
+              <span class="work-tag">2025 – 2026</span>
+            </div>
+            <div class="work-title">Deep Visual-Inertial Odometry Pipeline</div>
+            <div class="work-desc">
+              End-to-end deep learning VIO system for GPS-free 6-DoF localization, fusing
+              monocular camera and IMU with CNNs. Evaluated on EuRoC MAV (indoor) and KITTI (outdoor).
+            </div>
+            <div class="work-metrics">
+              <span class="metric">0.038 m ATE — EuRoC MAV</span>
+              <span class="metric">1.42 m ATE — KITTI</span>
+            </div>
+          </div>
+          <div class="work-arrow" style="color:transparent">–</div>
+        </div>
+
+        <!-- 05 -->
+        <a class="work-item" href="https://ieeexplore.ieee.org/document/10735689" target="_blank" rel="noopener">
+          <div class="work-num">05</div>
+          <div>
+            <div class="work-tags">
+              <span class="work-tag">Bachelor's Thesis</span>
+              <span class="work-tag">IEEE REM 2024 - First Author</span>
+              <span class="work-tag">2022 – 2024</span>
+            </div>
+            <div class="work-title">Monocular Visual-Inertial Odometry for GPS-Free Drone Navigation</div>
+            <div class="work-desc">
+              Sparse optical flow VIO pipeline for autonomous drone navigation without external
+              positioning. RANSAC-based outlier rejection and camera-IMU calibration.
+              Validated across KITTI benchmark, DJI Tello flights with OptiTrack ground truth,
+              and Unreal Engine simulation. Published and presented at IEEE REM 2024.
+            </div>
+            <div class="work-metrics">
+              <span class="metric">0.94% translation RMSE/m — KITTI</span>
+              <span class="metric">5.32% — DJI Tello real flight</span>
+              <span class="metric">0.015 deg/m rotation error</span>
+            </div>
+          </div>
+          <div class="work-arrow">↗</div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- PUBLICATION -->
+  <section class="pub-section" id="research">
+    <div class="container">
+      <p class="eyebrow">Publication</p>
+      <h2 class="section-title">Peer-reviewed research.</h2>
+
+      <div class="pub-card">
+        <div>
+          <div class="pub-venue">IEEE REM 2024 &middot; First Author &middot; DOI: 10.1109/REM63063.2024.10735689</div>
+          <div class="pub-title">Getting Started With a Simple Visual-Inertial Odometry</div>
+          <div class="pub-authors">Batchaya, Y. D. et al. &mdash; Presented at IEEE REM 2024 &middot; Published in IEEE Xplore</div>
+          <div class="pub-doi">DOI&nbsp;10.1109/REM63063.2024.10735689</div>
+        </div>
+        <a href="https://ieeexplore.ieee.org/document/10735689" target="_blank" rel="noopener" class="pub-cta">
+          IEEE Xplore ↗
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <div class="contact-inner">
+        <p class="eyebrow">Contact</p>
+        <h2 class="section-title">Let's build<br>something real.</h2>
+        <p class="contact-intro">
+          Looking for robotics and computer vision roles in Germany starting October 2026.
+          If you work on autonomous systems, UAVs, or embedded perception — let's talk.
+        </p>
+        <div class="contact-links">
+          <a class="contact-row" href="mailto:batchaya.yacynte@gmail.com">
+            <span class="contact-key">Email</span>
+            <span class="contact-val">batchaya.yacynte@gmail.com</span>
+            <span class="contact-arrow">→</span>
+          </a>
+          <a class="contact-row" href="https://www.linkedin.com/in/batchaya-yacynte/" target="_blank" rel="noopener">
+            <span class="contact-key">LinkedIn</span>
+            <span class="contact-val">linkedin.com/in/batchaya-yacynte</span>
+            <span class="contact-arrow">→</span>
+          </a>
+          <a class="contact-row" href="https://github.com/Yacynte" target="_blank" rel="noopener">
+            <span class="contact-key">GitHub</span>
+            <span class="contact-val">github.com/Yacynte</span>
+            <span class="contact-arrow">→</span>
+          </a>
+          <a class="contact-row" href="https://ieeexplore.ieee.org/document/10735689" target="_blank" rel="noopener">
+            <span class="contact-key">Publication</span>
+            <span class="contact-val">IEEE REM 2024 &middot; DOI 10.1109/REM63063.2024.10735689</span>
+            <span class="contact-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">Batchaya Yacynte</div>
+        <div class="footer-meta">M.Eng. AI Engineering &amp; Autonomous Systems &middot; TH Ingolstadt &middot; &copy; 2026</div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
