@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vision-Based UAV Repositioning — Batchaya Yacynte</title>
+  <meta
+    name="description"
+    content="Master's thesis project: closed-loop monocular repositioning of a UAV camera to a reference view. Method, weather experiments and quantitative simulation results, with limitations."
+  >
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,500&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="icon" type="image/x-icon" href="assets/Divan-Batchaya.ico">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Project-page additions; colours and fonts come from style.css */
+    .proj-header { padding: calc(var(--nav-h) + 4rem) 0 2.5rem; }
+    .proj-title {
+      font-family: var(--font-d); font-weight: 800; letter-spacing: -0.03em;
+      font-size: clamp(2rem, 4.6vw, 3.3rem); line-height: 1.06; margin-bottom: 1.2rem;
+    }
+    .proj-lead { color: var(--text-2); font-size: 1.08rem; max-width: 720px; }
+    .proj-tags { margin-top: 1.2rem; }
+
+    .status-note {
+      margin-top: 1.8rem; padding: 1rem 1.2rem; max-width: 760px;
+      background: var(--accent-soft); border-left: 3px solid var(--accent);
+      border-radius: 4px; font-size: 0.92rem; color: var(--text-1);
+    }
+    .status-note strong { font-family: var(--font-m); font-size: 0.72rem; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 0.3rem; }
+
+    .proj-section { padding: 3.5rem 0; }
+    .proj-section p, .proj-section li { color: var(--text-2); max-width: 760px; }
+    .proj-section p + p { margin-top: 0.9rem; }
+
+    .steps { list-style: none; counter-reset: step; display: grid; gap: 0.9rem; margin-top: 1.4rem; max-width: 820px; }
+    .steps li { counter-increment: step; position: relative; padding-left: 2.6rem; }
+    .steps li::before {
+      content: counter(step, decimal-leading-zero); position: absolute; left: 0; top: 0.05rem;
+      font-family: var(--font-m); font-size: 0.75rem; color: var(--accent);
+    }
+    .steps li b { color: var(--text-1); font-weight: 500; }
+
+    .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+      background: var(--border); border: 1px solid var(--border); margin-top: 1.6rem; }
+    .kpi { background: var(--bg); padding: 1.3rem 1.2rem; }
+    .kpi-val { font-family: var(--font-d); font-size: clamp(1.5rem, 2.8vw, 2.1rem); font-weight: 700;
+      letter-spacing: -0.02em; line-height: 1.1; }
+    .kpi-val small { font-size: 0.55em; color: var(--text-2); font-weight: 600; }
+    .kpi-label { font-size: 0.8rem; color: var(--text-2); margin-top: 0.45rem; line-height: 1.45; }
+
+    figure.proj-fig { margin: 2rem 0 0; }
+    figure.proj-fig img { width: 100%; border: 1px solid var(--border); border-radius: 6px; background: #fff; }
+    figure.proj-fig figcaption { font-size: 0.84rem; color: var(--text-2); margin-top: 0.6rem; max-width: 820px; }
+    .fig-tag { font-family: var(--font-m); font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--accent); margin-right: 0.4rem; }
+    .fig-tag.hw { color: #B7791F; }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+
+    table.res { border-collapse: collapse; width: 100%; max-width: 820px; margin-top: 1.4rem; font-size: 0.88rem; }
+    table.res th, table.res td { padding: 0.5rem 0.7rem; border-bottom: 1px solid var(--border); text-align: right; }
+    table.res th:first-child, table.res td:first-child { text-align: left; }
+    table.res th { font-family: var(--font-m); font-size: 0.68rem; letter-spacing: 0.04em; text-transform: uppercase;
+      color: var(--text-2); font-weight: 500; }
+    table.res td { color: var(--text-1); font-variant-numeric: tabular-nums; }
+    .table-wrap { overflow-x: auto; }
+
+    .limits { display: grid; gap: 0.75rem; margin-top: 1.2rem; max-width: 820px; }
+    .limits li { padding-left: 1.2rem; position: relative; }
+    .limits li::before { content: "—"; position: absolute; left: 0; color: var(--text-3); }
+
+    .back-link { font-family: var(--font-m); font-size: 0.75rem; color: var(--accent); }
+    .back-link:hover { text-decoration: underline; }
+
+    @media (max-width: 900px) {
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+      .two-col { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">Batchaya Yacynte</a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="index.html#research">Research</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Get in touch</a></li>
+    </ul>
+  </nav>
+
+
+  <!-- ===================================================== HEADER -->
+  <header class="proj-header">
+    <div class="container">
+      <a href="index.html#work" class="back-link">← Back to all work</a>
+      <p class="eyebrow" style="margin-top:1.6rem">Master's thesis · TH Ingolstadt · Project ENGEL · AImotion Bavaria · 2025–2026</p>
+      <h1 class="proj-title">Closed-loop vision-based<br>UAV repositioning</h1>
+      <p class="proj-lead">
+        Returning a drone's camera to the exact viewpoint of a stored reference image, using only a
+        single monocular camera: no map, no depth sensor, no prior knowledge of the scene.
+        GNSS gets the vehicle within a few metres and tens of degrees; the closed visual loop removes
+        the rest.
+      </p>
+      <div class="work-metrics proj-tags">
+        <span class="metric">C++17 · Eigen · OpenCV</span>
+        <span class="metric">SuperPoint · LightGlue (ONNX, CUDA)</span>
+        <span class="metric">PNEC rotation estimation</span>
+        <span class="metric">Unreal Engine 5 · Cesium · Google 3D Tiles</span>
+        <span class="metric">PX4 · Jetson Orin NX</span>
+      </div>
+
+      <div class="status-note">
+        <strong>Validation status</strong>
+        All quantitative results of the full repositioning loop (rotation <em>and</em> translation) come from
+        <b>simulation in Unreal Engine 5</b> (234 trials). On the physical drone, only the rotation (gimbal)
+        loop has been tested so far, with the vehicle stationary. Flight tests of the full loop are in progress.
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <figure class="proj-fig">
+      <img src="assets/engel/motivation_base.png" alt="Reference image and red-cyan overlays before and after repositioning" loading="lazy">
+      <figcaption>
+        <span class="fig-tag">Simulation</span>
+        (a) Reference image. (b) Red–cyan overlay of reference and live frame after a return 2.4&nbsp;m and 18° off:
+        several hundred pixels of misalignment. (c) After closed-loop repositioning the ground coincides
+        (grey); only the clouds of the dynamic sky differ.
+      </figcaption>
+    </figure>
+  </div>
+
+  <hr class="divider" style="margin-top:3.5rem">
+
+
+  <!-- ===================================================== METHOD -->
+  <section class="proj-section">
+    <div class="container">
+      <p class="eyebrow">Approach</p>
+      <h2 class="section-title">Rotation from geometry,<br>translation from the image.</h2>
+      <p>
+        Two-view pose estimators recover translation only as a unit direction, and that direction becomes
+        ill-conditioned exactly where a repositioning loop operates: near the goal, with a baseline that is
+        tiny compared with scenes 150–250&nbsp;m away. The system therefore separates the two problems.
+      </p>
+      <ol class="steps">
+        <li><b>Correspondences.</b> SuperPoint + LightGlue match the live frame to the reference, spread over the image,
+          refined to sub-pixel accuracy with forward–backward Lucas–Kanade tracking.</li>
+        <li><b>Uncertainty.</b> Each match gets an anisotropic structure-tensor covariance, propagated to bearing space with an unscented transform.</li>
+        <li><b>Rotation.</b> The Probabilistic Normal Epipolar Constraint (PNEC) estimates the relative rotation, weighting every match by its uncertainty; it drives the gimbal.</li>
+        <li><b>Translation.</b> After removing the estimated rotation, a robust shift-and-expansion fit to the remaining displacement field gives a signed pixel error that is zero at the goal.</li>
+        <li><b>Control.</b> Saturating (tanh) laws and a per-axis convergence logic close the loop at about 15&nbsp;Hz, behind the ENGEL DroneManager / PX4 interface.</li>
+      </ol>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+
+  <!-- ===================================================== RESULTS -->
+  <section class="proj-section">
+    <div class="container">
+      <p class="eyebrow">Results · Simulation (Unreal Engine 5)</p>
+      <h2 class="section-title">Clear-weather accuracy.</h2>
+      <p>
+        Six reference views of a real rural area near Ingolstadt (Google Photorealistic 3D Tiles), 13 configurations,
+        18 trials each, starting 1.9–3.4&nbsp;m and 14–28° from the reference. Every number below is the error at the
+        end of the run, over all trials, against simulator ground truth.
+      </p>
+
+      <div class="kpi-grid">
+        <div class="kpi">
+          <div class="kpi-val">0.15<small>°</small></div>
+          <div class="kpi-label">final rotation error, clear weather (± 0.09°, n&nbsp;=&nbsp;18)</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-val">≈2<small> px</small></div>
+          <div class="kpi-label">effective image misalignment (40&nbsp;cm lateral at ~190&nbsp;m scene depth)</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-val">31<small> s</small></div>
+          <div class="kpi-label">mean run duration, rotation below 1° after ~12&nbsp;s</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-val">2.4<small>×</small></div>
+          <div class="kpi-label">lower rotation error with PNEC uncertainty weighting than with the unweighted NEC</div>
+        </div>
+      </div>
+
+      <figure class="proj-fig">
+        <img src="assets/engel/convergence_base.png" alt="Rotation and translation error over time for 18 clear-weather trials" loading="lazy">
+        <figcaption>
+          <span class="fig-tag">Simulation</span>
+          Ground-truth rotation and translation error of all 18 clear-weather trials. The rotation decays
+          exponentially (time constant 3.9&nbsp;s); the translation levels off at 0.5–1&nbsp;m, explained below.
+        </figcaption>
+      </figure>
+
+      <figure class="proj-fig">
+        <img src="assets/engel/examples_good_base.png" alt="Reference, start and end frames with error curves of two trials" loading="lazy">
+        <figcaption>
+          <span class="fig-tag">Simulation</span>
+          Two clear-weather trials: reference, start and end frame, checkerboard of end frame and reference
+          (continuous edges = aligned), and error over time.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+
+  <!-- ===================================================== AMBIGUITY -->
+  <section class="proj-section">
+    <div class="container">
+      <p class="eyebrow">Key finding</p>
+      <h2 class="section-title">Why the metric error is not zero.</h2>
+      <p>
+        Rotational image motion does not depend on depth; translational image motion shrinks with it.
+        A residual rotation α is therefore, in the image, almost indistinguishable from a sideways offset of
+        α·Z: at 200&nbsp;m, 0.1° moves the image by 1.7&nbsp;px, exactly like 35&nbsp;cm of translation.
+        An image-only loop aligns the <em>view</em> and comes to rest on this ambiguity.
+      </p>
+      <p>
+        With rendered ground-truth depth, the final translation error splits into a part that compensates the
+        residual rotation (invisible in the image) and an effective, visible error. In clear weather, the
+        74&nbsp;cm metric error contains 39&nbsp;cm of compensation; the remaining 40&nbsp;cm ≈ 2&nbsp;px.
+        Across 215 trials the actual and compensating translations correlate with r&nbsp;=&nbsp;0.92.
+        A Fisher-information analysis shows that the images would determine the pose to a few centimetres —
+        the residual is set by the stopping rules and the rotation bias, not by missing information.
+      </p>
+      <figure class="proj-fig">
+        <img src="assets/engel/compensation.png" alt="Actual vs compensating translation, and image misalignment per condition" loading="lazy">
+        <figcaption>
+          <span class="fig-tag">Simulation</span>
+          (a) Final lateral translation error vs the translation that compensates the residual rotation.
+          (b) Image misalignment caused by the residual rotation alone, by the actual final pose, and with the
+          optimal compensation: in fog, 9.6&nbsp;px → 4.1&nbsp;px.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+
+  <!-- ===================================================== WEATHER -->
+  <section class="proj-section">
+    <div class="container">
+      <p class="eyebrow">Weather experiments · Simulation</p>
+      <h2 class="section-title">Rain, snow and fog.</h2>
+      <p>
+        Weather is rendered with Ultra Dynamic Sky / Weather; in every run the sky and clouds also change
+        between reference and live view. Bad weather removes matches and degrades the rotation estimate,
+        yet the view is still recovered: the effective lateral error stays at 28–32&nbsp;cm in every condition,
+        and every trial ends below 1° of rotation error.
+      </p>
+
+      <figure class="proj-fig">
+        <img src="assets/engel/weather_conditions.png" alt="The six visibility conditions at the same reference view" loading="lazy">
+        <figcaption>
+          <span class="fig-tag">Simulation</span>
+          End frames at the Farmland reference view in the six conditions, with the mean number of initial matches.
+        </figcaption>
+      </figure>
+
+      <div class="table-wrap">
+        <table class="res">
+          <thead>
+            <tr><th>Condition</th><th>Matches</th><th>Rotation error</th><th>Worst trial</th><th>Effective lateral error</th><th>Trials &lt; 0.2°</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>clear</td><td>114</td><td>0.15 ± 0.09°</td><td>0.41°</td><td>40 cm</td><td>78 %</td></tr>
+            <tr><td>light rain</td><td>112</td><td>0.21 ± 0.13°</td><td>0.50°</td><td>30 cm</td><td>61 %</td></tr>
+            <tr><td>heavy rain</td><td>111</td><td>0.17 ± 0.11°</td><td>0.38°</td><td>29 cm</td><td>67 %</td></tr>
+            <tr><td>light snow</td><td>100</td><td>0.25 ± 0.14°</td><td>0.52°</td><td>32 cm</td><td>44 %</td></tr>
+            <tr><td>heavy snow</td><td>73</td><td>0.32 ± 0.21°</td><td>0.78°</td><td>30 cm</td><td>39 %</td></tr>
+            <tr><td>fog</td><td>67</td><td>0.51 ± 0.23°</td><td>0.93°</td><td>28 cm</td><td>6 %</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <figure class="proj-fig">
+          <img src="assets/engel/weather.png" alt="Median error over time and final errors per weather condition" loading="lazy">
+          <figcaption><span class="fig-tag">Simulation</span> Median errors over time, initial matches and final errors per condition.</figcaption>
+        </figure>
+        <figure class="proj-fig">
+          <img src="assets/engel/repeatability.png" alt="Final rotation error per reference view and condition" loading="lazy">
+          <figcaption><span class="fig-tag">Simulation</span> Repeatability: final rotation error of every trial per reference view and condition (3 repetitions each).</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+
+  <!-- ===================================================== ABLATIONS -->
+  <section class="proj-section">
+    <div class="container">
+      <p class="eyebrow">Ablations · Simulation</p>
+      <h2 class="section-title">What each component contributes.</h2>
+      <p>
+        <b style="color:var(--text-1);font-weight:500">Rotation estimator:</b> PNEC's uncertainty weighting reduces the final rotation error 2.4× relative to
+        the unweighted NEC; the essential matrix becomes ill-conditioned as the baseline vanishes and ends 7× worse
+        (1.05° vs 0.15°). <b style="color:var(--text-1);font-weight:500">Translation signal:</b> the signed displacement fit halves the forward-error scatter
+        compared with a parallax magnitude. <b style="color:var(--text-1);font-weight:500">Control:</b> the saturating law leaves a 30&nbsp;% smaller rotation error
+        than linear or PD control. <b style="color:var(--text-1);font-weight:500">Stopping threshold:</b> 0.5&nbsp;px instead of 1.5&nbsp;px cuts the effective error by 35&nbsp;% at the cost of longer runs.
+      </p>
+      <figure class="proj-fig">
+        <img src="assets/engel/components_over_time.png" alt="Median error trajectories for rotation estimators and control laws" loading="lazy">
+        <figcaption><span class="fig-tag">Simulation</span> Median rotation and translation error over time (shaded: interquartile range) per rotation estimator and control law.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+
+  <!-- ===================================================== HARDWARE -->
+  <section class="proj-section">
+    <div class="container">
+      <p class="eyebrow">First hardware test · not a full-system validation</p>
+      <h2 class="section-title">Gimbal loop on the real drone.</h2>
+      <p>
+        On the ENGEL quadrotor, with the vehicle <b style="color:var(--text-1);font-weight:500">stationary</b> and only the gimbal
+        commanded, the rotation loop ran on real camera images in three tests (one outdoors, two in the laboratory).
+        It reduced the camera yaw error from 10–21° to 1–2° within 8–49&nbsp;s. A residual error of 1–2° remains,
+        larger than in simulation. Translation was not controlled in these tests.
+      </p>
+      <figure class="proj-fig">
+        <img src="assets/engel/flight_rotation.png" alt="Real-drone gimbal tests: images and camera yaw and pitch error" loading="lazy">
+        <figcaption>
+          <span class="fig-tag hw">Real drone · rotation only</span>
+          Reference, start and end frames and camera yaw/pitch error for the three tests (a face in one frame is blurred).
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+
+  <!-- ===================================================== LIMITATIONS -->
+  <section class="proj-section">
+    <div class="container">
+      <p class="eyebrow">Limitations</p>
+      <h2 class="section-title">What is not shown yet.</h2>
+      <ul class="limits">
+        <li>The full loop (rotation and translation) has been evaluated in simulation only; on hardware, only the gimbal loop has been tested, with a stationary vehicle.</li>
+        <li>Metric position accuracy is bounded by scene depth: at 140–230&nbsp;m, 1&nbsp;px corresponds to 15–24&nbsp;cm, so the view can match while the camera is 0.5–1.5&nbsp;m from the reference position. The forward direction is only weakly observable with one camera.</li>
+        <li>The loop stops on <em>estimated</em> rotation; its bias near convergence (~0.18°) sets the residual rotation.</li>
+        <li>All starts overlapped the reference view by 49–71&nbsp;%; the limit of the convergence basin was not determined. In snow, the strict stopping threshold often lets runs continue to the 180&nbsp;s limit.</li>
+      </ul>
+      <p style="margin-top:2rem">
+        <a class="back-link" href="https://drive.google.com/file/d/1XDKxEPV-a2gEcKce-REYQuj8g54tIHwB/view?usp=sharing" target="_blank" rel="noopener">Project document ↗</a>
+        &nbsp;&nbsp;·&nbsp;&nbsp;
+        <a class="back-link" href="index.html#work">← Back to all work</a>
+      </p>
+    </div>
+  </section>
+
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">Batchaya Yacynte</div>
+        <div class="footer-meta">M.Eng. AI Engineering &amp; Autonomous Systems · TH Ingolstadt · © 2026</div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

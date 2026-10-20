@@ -144,12 +144,12 @@
 
         <div>
           <div class="stat-value">
-            ~10<sup>cm</sup>
+            0.15<sup>°</sup>
           </div>
 
           <div class="stat-label">
-            Lateral accuracy<br>
-            Project ENGEL
+            Rotation accuracy<br>
+            Project ENGEL (simulation)
           </div>
         </div>
 
@@ -259,10 +259,11 @@
 
           <p>
             My master's thesis, developed within an Airbus Helicopters consortium,
-            delivers closed-loop GPS-denied UAV repositioning with ~10 cm lateral
-            accuracy and ~0.1° heading precision in under 30 seconds, validated
-            in both clear and rainy simulation, using only an onboard monocular
-            camera. Before that, at Fraunhofer IVI, I designed an event-based
+            returns a UAV camera to the viewpoint of a reference image using only an
+            onboard monocular camera. In 234 Unreal Engine 5 simulation trials across
+            clear weather, rain, snow and fog it reaches 0.15° rotation accuracy and
+            about 2 px image alignment in clear weather; first tests on the real drone
+            cover the gimbal (rotation) loop. Before that, at Fraunhofer IVI, I designed an event-based
             optical flow system for Time-to-Collision estimation that outperformed
             three state-of-the-art methods on the MVSEC benchmark, running
             single-threaded on NVIDIA Jetson.
@@ -430,39 +431,40 @@
               <div class="work-text">
 
                 <div class="work-desc">
-                  Real-time monocular pipeline for autonomous helicopter landing
-                  in GPS-denied environments. Built the Unreal Engine 5 validation
-                  environment, including a continuous image stream, UDP-based UAV
-                  control, and simulated weather effects such as rain and snow for
-                  repeatable testing. SuperPoint + LightGlue feature matching feeds
-                  PNEC pose recovery; the resulting pose drives a sigmoid-mapped
-                  velocity controller in a closed loop. Developed ONNX-exportable
-                  SuperPoint and LightGlue inference pipelines for deployment across
-                  different devices. Validated in UE5 simulation under clear and
-                  adverse-weather scenarios; outdoor flight validation ongoing.
+                  Closed-loop monocular repositioning: after GNSS brings a UAV within
+                  a few metres of a recorded viewpoint, the system drives the vehicle
+                  and gimbal back to the exact view of the stored reference image.
+                  SuperPoint + LightGlue matches with sub-pixel refinement and
+                  uncertainty feed a PNEC rotation estimate; translation is measured
+                  as a signed image error, and saturating control laws close the loop
+                  at ~15 Hz (C++, ONNX/CUDA). Built the Unreal Engine 5 test environment
+                  from Google 3D Tiles with dynamic sky, rain, snow and fog.
+                  Results below are from simulation; first real-drone tests cover the
+                  gimbal loop only.
+                  <a href="engel.html" class="work-title-link">Project page →</a>
                 </div>
 
 
                 <div class="work-metrics">
 
                   <span class="metric">
-                    ~10 cm lateral accuracy
+                    0.15° rotation error (sim, clear)
                   </span>
 
                   <span class="metric">
-                    ~0.1° heading accuracy
+                    ≈2 px view alignment (sim)
                   </span>
 
                   <span class="metric">
-                    Converges in &lt;30 s
+                    234 sim trials · 6 weather conditions
                   </span>
 
                   <span class="metric">
-                    &gt;98% image similarity
+                    ~31 s per run (sim)
                   </span>
 
                   <span class="metric">
-                    Clear + rainy sky validated
+                    Real drone: gimbal loop tested
                   </span>
 
                 </div>
