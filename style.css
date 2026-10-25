@@ -827,6 +827,31 @@ ul {
   border-radius: 100px;
 }
 
+.work-links {
+
+  margin-top: 0.8rem;
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 0.9rem;
+}
+
+.work-link {
+
+  font-family: var(--font-m);
+
+  font-size: 0.72rem;
+
+  color: var(--accent);
+}
+
+.work-link:hover {
+
+  text-decoration: underline;
+}
+
 .work-arrow {
 
   font-size: 1rem;
